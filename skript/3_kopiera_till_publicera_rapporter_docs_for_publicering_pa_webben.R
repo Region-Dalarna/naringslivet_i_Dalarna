@@ -1,3 +1,4 @@
+# Ctrl+A följt av ctrl+enter för att kopiera rapporten till projektet publicera rapporter.
 
 kopiera_till_publicera_rapporter_docs <- function(
     repo_namn = NULL, 
@@ -27,3 +28,5 @@ file.copy(from = paste0(senaste_html_filen), to = paste0(publicera_rapporter_sok
 
 
 } # slut funktion
+
+kopiera_till_publicera_rapporter_docs(repo_namn = "naringslivet_i_Dalarna")
