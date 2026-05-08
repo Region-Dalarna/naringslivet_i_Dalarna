@@ -1,0 +1,113 @@
+---
+title: Näringslivet i Dalarna
+author: ""
+date: ""
+output: 
+  html_document:
+    self_contained: true
+    includes:
+      in_header: 
+      - favicon.html
+      - hero_image.html
+    toc: yes
+    toc_float: yes
+    toc_depth: 6
+    css: "styles_hero.css"
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.height=5, fig.width=8, fig.align='center')
+
+# Nödvändiga paket
+if (!require('pacman')) install.packages('pacman')
+p_load(tidyverse,
+       here)
+
+# Funktioner som behövs (hämtas från Git-Hub)
+source('https://raw.githubusercontent.com/Region-Dalarna/funktioner/main/func_SkapaDiagram.R')
+source('https://raw.githubusercontent.com/Region-Dalarna/funktioner/main/func_API.R')
+
+# För att information från Tidyverse inte skall visas
+options(dplyr.summarise.inform = FALSE)
+
+```
+
+```{js}
+const debounce = (fn) => {
+  let frame;
+  return (...params) => {
+    if (frame) cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(() => fn(...params));
+  };
+};
+
+const storeScroll = () => {
+  const threshold = 150; // px
+  const scrolled = window.scrollY > threshold;
+
+  document.documentElement.dataset.scroll = scrolled ? 'scrolled' : 'top';
+};
+
+document.addEventListener('scroll', debounce(storeScroll), { passive: true });
+storeScroll();
+
+```
+<p style = "font-size:12px">
+<i>Rapporten är skapad av Samhällsanalys, Region Dalarna<br>
+Senast uppdaterad: `r Sys.Date()`</i>
+</p>
+
+# Sammanfattning {-}
+
+Här ska vi ha en sammanfattning av rapporten. Det ska vara en punktlista med de viktigaste budskapen och inte ett referat av varje avsnitt.
+<br>
+
+<ul>
+
+<li>Första punkten. </li>
+
+<li>Andra punkten.</li>
+    
+<li>Tredje punkten.</li>
+
+<li>Fjärde punkten.</li>
+
+# Introduktion {-}
+
+Här kommer en introduktion till rapporten. Det ska vara en kort text som förklarar vad rapporten handlar om och vad läsaren kan förvänta sig att hitta i rapporten.
+
+# Första avsnittet
+Här kommer första avsnittet. 
+
+## Första avsnittets första underrubrik
+Här är det första avsnittets första underrubrik
+
+## Första avsnittets andra underrubrik
+Här är det första avsnittets andra underrubrik
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align="center"}
+gg_skogsmark$areal_skyddad_skogsmark_Dalarna
+```
+
+## Här kommer en underrubrik till
+Lite text
+
+# Och så en huvudrubrik
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align="center"}
+gg_skogsmark$andel_skyddad_skogsmark_Dalarna
+```
+
+## Underrubrik igen
+Lite text
+
+# Huvudrubrik
+Lite text
+
+## Underrubrik igen
+Lite text
+
+## Underrubrik igen
+Lite text
+
