@@ -84,7 +84,7 @@ Här kommer första avsnittet.
 Här är det första avsnittets första underrubrik
 
 ## Första avsnittets andra underrubrik
-Här är det första avsnittets andra underrubrik
+Testfigur som inte skall vara med i rapporten
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align="center"}
 gg_skogsmark$areal_skyddad_skogsmark_Dalarna
@@ -94,6 +94,7 @@ gg_skogsmark$areal_skyddad_skogsmark_Dalarna
 Lite text
 
 # Och så en huvudrubrik
+Testfigur som inte skall vara med i rapporten
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align="center"}
 gg_skogsmark$andel_skyddad_skogsmark_Dalarna
@@ -110,4 +111,6 @@ Lite text
 
 ## Underrubrik igen
 Lite text
+
+<div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 200px;"></div>
 

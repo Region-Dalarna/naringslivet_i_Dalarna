@@ -1,3 +1,4 @@
+# Ctrl+A följt av ctrl+enter för att knitta rapport 
 
 knitta_webbrapport <- function(
     repo_namn = NULL, 
