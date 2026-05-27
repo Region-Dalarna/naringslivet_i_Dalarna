@@ -112,7 +112,7 @@ Lite text
 Här tittar vi på lönsamhetsmått, hur nyföretagandet utvecklas och hur företagens överlevnadsgrad ser ut på kort och lång sikt.
 
 ## Lönsamhetsmått
-Equtiy Before Interest and Taxes (EBIT), Return on assets (ROA) och Return on Equtiy (ROE)
+Earnings Before Interest and Taxes (EBIT), Return on Assets (ROA) och Return on Equtiy (ROE)
 
 ## Nyföretagande
 
