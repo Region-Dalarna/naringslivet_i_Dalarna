@@ -77,13 +77,31 @@ Här ska vi ha en sammanfattning av rapporten. Det ska vara en punktlista med de
 
 I denna rapport beskrivs näringslivet i Dalarna. Rapporten inleds med en övergripande bild av näringslivet, följt av en genomgång av länets utveckling när det gäller länets bruttoregionprodukt och företagens lönsamhet. Därefter ges information och import, export samt sysselsättning. Rapporten avslutas med avsnitt som behandlar lokalt, socialt samt hållbart företagande i länet.
 
+Att beskriva näringslivet i länet är utmanande och kräver vissa preciseringar och avgränsningar för att vara genomförbart. I denna rapport utgår sammanställningen från privata företag som finns i SCB:s Företagsdatabas och de inkluderade företagen har avgränsats till att ha
+
+<ul>
+
+<li>Minst 1 anställd, eller </li>
+
+<li>Minst X kronor i omsättning </li>
+    
+<li>Något annat? </li>
+
+Vilket datum gäller för uttag ur FDB?
+
+Verksamheter inom offentlig sektor är exkluderade, även om de har betydelse för företag i privat sektor i form av kunder. Således kan förändringar inom offentligt sektor få effekt på utvecklingen för företag i privat sektor.
+
 
 # Dalarnas näringsliv - en överblick
+Några övergripande basfakta om Dalarnas näringsliv
 
-		a. Hur ser Dalarnas näringsliv ut?
-		b. Storlek, utveckling och geografisk fördelning
-		c. Bransch- och företagsstruktur, omsättning, sysselsatta
-		d. Fördelning på kommunnivå
+Omsättning och sysselsättning per bransch?
+
+Uppdelning per kommun?
+
+Total import och export?
+
+Förändring i näringslivets sammansättning de senaste x åren?
  
 
 ## Näringslivets omfattning, utveckling och geografisk fördelning
@@ -96,17 +114,17 @@ Bubbeldiagrammet?
 Här kommenterar vi hur det ser ut i våra kommuner, vilka skillnader som finns m m.
 
 # Konjunkturen
-Något från SCB:s konjunkturklocka som kan nyttjas?
+Finns det behov av att visa på vilket konjunkturläge som råder innan vi visar hur det går i näringslivet? Något från SCB:s konjunkturklocka som kan nyttjas?
 
 ## Underrubrik igen
 Lite text
 
 # Regionalräkenskaper
-Sammanställning av utvecklingen av tillväxt, förädlingsvärden, produktivitet, lönesummor per bransch och skattekraft. 
+Sammanställning av utvecklingen av tillväxt, förädlingsvärden, produktivitet, lönesummor per bransch och skattekraft. Eventuellt slå samman med avsnittet om konjunktur. Hur förhåller sig dessa siffror till det privata respektive det offentliga?
 
 
-## Tillväxt i näringslivet
-Lite text
+## Tillväxten i länet
+Vad kan vi säga om utvecklingen när det gäller ekonomisk tillväxt?
 
 # Företagens lönsamhet
 Här tittar vi på lönsamhetsmått, hur nyföretagandet utvecklas och hur företagens överlevnadsgrad ser ut på kort och lång sikt.
@@ -114,22 +132,24 @@ Här tittar vi på lönsamhetsmått, hur nyföretagandet utvecklas och hur före
 ## Lönsamhetsmått
 Earnings Before Interest and Taxes (EBIT), Return on Assets (ROA) och Return on Equtiy (ROE)
 
-## Nyföretagande
-
-## Överlevnadsgrad
+## Nyföretagande och Överlevnadsgrad
+Hur är situationen när det gäller tillkomsten av nya företag och hur ser överlevnadsgraden ut över tid? Startas det många bolag som sedan inte finns kvar efter några år?
 
 # Export och import
-Här tittar vi på näringslivet i Dalarnas export- och importvolymer.
+Här tittar vi på näringslivet i Dalarnas export- och importvolymer. Något att hämta från Peters exportarbete?
 
 # En genomgång av arbetskraftens sammansättning?
-		a. Vilka är det som är sysselsatta? Inkomster, utbildning, matchning?
-		b. Hur ser arbetskraftsreserven ut? Vilken potential finns det för näringslivet i den delen?
+Vilka är det som är sysselsatta? Inkomster, utbildning, matchning?
+Hur ser arbetskraftsreserven ut? Vilken potential finns det för näringslivet i den delen?
 
 # Det lokala företagandet
+Vad kan vi säga om hur företag ägs och sysselsätter sin verksamhet lokalt? Hur beroende är Dalarnas företag av marknader utanför länet och utanför riket?
 
 # Det sociala företagandet
+Finns det något vi kan göra för att beskriva den sociala dimensionen i länets företagande?
 
 # Det hållbara företagandet
+Grön omställning m m 
 
 # Avslutande diskussion
 Vad kan vi säga om denna genomgång?
