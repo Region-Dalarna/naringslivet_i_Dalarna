@@ -67,13 +67,17 @@ Här ska vi ha en sammanfattning av rapporten. Det ska vara en punktlista med de
 
 <li>Första punkten. </li>
 
-<li>Andra punkten.</li>
+<li>Andra punkten. </li>
     
-<li>Tredje punkten.</li>
+<li>Tredje punkten. </li>
 
-<li>Fjärde punkten.</li>
+<li>Fjärde punkten. </li>
 
 # Introduktion {-}
+
+Syftet med denna rapport är att...?
+
+Vad vill vi uppnå? Hur gör vi det smidigast? Övergripande slutsatser och analys i rapport med ett fåtal diagram som stödjer slutsatser, men möjlighet att länka vidare till en mer omfattande rapport (Shiny?) där användaren kan ta del av mer detaljer kring näringslivet i länet?
 
 I denna rapport beskrivs näringslivet i Dalarna. Rapporten inleds med en övergripande bild av näringslivet, följt av en genomgång av länets utveckling när det gäller länets bruttoregionprodukt och företagens lönsamhet. Därefter ges information och import, export samt sysselsättning. Rapporten avslutas med avsnitt som behandlar lokalt, socialt samt hållbart företagande i länet.
 
@@ -86,6 +90,7 @@ Att beskriva näringslivet i länet är utmanande och kräver vissa preciseringa
 <li>Minst X kronor i omsättning </li>
     
 <li>Status som aktiva? </li>
+<br>
 
 Vilket datum gäller för uttag ur FDB?
 
@@ -134,7 +139,7 @@ Vad kan vi säga om utvecklingen när det gäller ekonomisk tillväxt?
 Här tittar vi på lönsamhetsmått, hur nyföretagandet utvecklas och hur företagens överlevnadsgrad ser ut på kort och lång sikt.
 
 ## Lönsamhetsmått
-Earnings Before Interest and Taxes (EBIT), Return on Assets (ROA) och Return on Equtiy (ROE)
+Earnings Before Interest and Taxes (EBIT), Return on Assets (ROA) och Return on Equtiy (ROE).
 
 ## Nyföretagande och Överlevnadsgrad
 Hur är situationen när det gäller tillkomsten av nya företag och hur ser överlevnadsgraden ut över tid? Startas det många bolag som sedan inte finns kvar efter några år?
@@ -149,7 +154,7 @@ Här tittar vi på näringslivet i Dalarnas export- och importvolymer. Något at
 # En genomgång av arbetskraftens sammansättning?
 Vilka är det som är sysselsatta? 
 I vilka branscher?
-Inkomster, utbildning, matchning?
+Inkomster, utbildning, matchning, pendlare?
 Hur ser arbetskraftsreserven ut? 
 Vilken potential finns det för näringslivet i den delen?
 
