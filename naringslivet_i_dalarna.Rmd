@@ -85,7 +85,7 @@ Att beskriva näringslivet i länet är utmanande och kräver vissa preciseringa
 
 <li>Minst X kronor i omsättning </li>
     
-<li>Något annat? </li>
+<li>Status som aktiva? </li>
 
 Vilket datum gäller för uttag ur FDB?
 
@@ -107,6 +107,8 @@ Förändring i näringslivets sammansättning de senaste x åren?
 ## Näringslivets omfattning, utveckling och geografisk fördelning
 Ett antal diagram som ger en bild av näringslivets sammansättning i Dalarna.
 
+Största arbetsgivare i länet och per kommun.
+
 ## Branscher - omsättning och sysselsatta
 Bubbeldiagrammet?
 
@@ -122,6 +124,8 @@ Lite text
 # Regionalräkenskaper
 Sammanställning av utvecklingen av tillväxt, förädlingsvärden, produktivitet, lönesummor per bransch och skattekraft. Eventuellt slå samman med avsnittet om konjunktur. Hur förhåller sig dessa siffror till det privata respektive det offentliga?
 
+BRP på kommunnivå - se Region Skånes kommunrapporter
+
 
 ## Tillväxten i länet
 Vad kan vi säga om utvecklingen när det gäller ekonomisk tillväxt?
@@ -135,15 +139,24 @@ Earnings Before Interest and Taxes (EBIT), Return on Assets (ROA) och Return on 
 ## Nyföretagande och Överlevnadsgrad
 Hur är situationen när det gäller tillkomsten av nya företag och hur ser överlevnadsgraden ut över tid? Startas det många bolag som sedan inte finns kvar efter några år?
 
+Karta över nyföretagande per 1000 invånare per kommun
+
+
+
 # Export och import
 Här tittar vi på näringslivet i Dalarnas export- och importvolymer. Något att hämta från Peters exportarbete?
 
 # En genomgång av arbetskraftens sammansättning?
-Vilka är det som är sysselsatta? Inkomster, utbildning, matchning?
-Hur ser arbetskraftsreserven ut? Vilken potential finns det för näringslivet i den delen?
+Vilka är det som är sysselsatta? 
+I vilka branscher?
+Inkomster, utbildning, matchning?
+Hur ser arbetskraftsreserven ut? 
+Vilken potential finns det för näringslivet i den delen?
 
 # Det lokala företagandet
 Vad kan vi säga om hur företag ägs och sysselsätter sin verksamhet lokalt? Hur beroende är Dalarnas företag av marknader utanför länet och utanför riket?
+
+Utlandsägda företag/arbetsställen
 
 # Det sociala företagandet
 Finns det något vi kan göra för att beskriva den sociala dimensionen i länets företagande?
