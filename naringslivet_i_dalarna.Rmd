@@ -75,25 +75,31 @@ Här ska vi ha en sammanfattning av rapporten. Det ska vara en punktlista med de
 
 # Introduktion {-}
 
-Här kommer en introduktion till rapporten. Det ska vara en kort text som förklarar vad rapporten handlar om och vad läsaren kan förvänta sig att hitta i rapporten.
+I denna rapport beskrivs näringslivet i Dalarna. Rapporten inleds med en övergripande bild av näringslivet, följt av en genomgång av länets utveckling när det gäller länets bruttoregionprodukt och företagens lönsamhet. Därefter ges information och import, export samt sysselsättning. Rapporten avslutas med avsnitt som behandlar lokalt, socialt samt hållbart företagande i länet.
 
-# Första avsnittet
-Här kommer första avsnittet. 
 
-## Första avsnittets första underrubrik
-Här är det första avsnittets första underrubrik
+# Dalarnas näringsliv - en överblick
 
-## Första avsnittets andra underrubrik
-Testfigur som inte skall vara med i rapporten
+		a. Hur ser Dalarnas näringsliv ut?
+		b. Storlek, utveckling och geografisk fördelning
+		c. Bransch- och företagsstruktur, omsättning, sysselsatta
+		d. Fördelning på kommunnivå
+ 
+
+## Näringslivets omfattning, utveckling och geografisk fördelning
+Ett antal diagram som ger en bild av näringslivets sammansättning i Dalarna.
+
+## Branscher - omsättning och sysselsatta
+Bubbeldiagrammet?
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align="center"}
 gg_skogsmark$areal_skyddad_skogsmark_Dalarna
 ```
 
-## Här kommer en underrubrik till
-Lite text
+## Kommunala variationer
+Här kommenterar vi hur det ser ut i våra kommuner, vilka skillnader som finns m m.
 
-# Och så en huvudrubrik
+# Konjunkturen
 Testfigur som inte skall vara med i rapporten
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align="center"}
@@ -103,14 +109,38 @@ gg_skogsmark$andel_skyddad_skogsmark_Dalarna
 ## Underrubrik igen
 Lite text
 
-# Huvudrubrik
+# Regionalräkenskaper
+Sammanställning av utvecklingen av tillväxt, förädlingsvärden, produktivitet, lönesummor per bransch och skattekraft. 
+
+
+## Tillväxt i näringslivet
 Lite text
 
-## Underrubrik igen
-Lite text
+# Företagens lönsamhet
+Här tittar vi på lönsamhetsmått, hur nyföretagandet utvecklas och hur företagens överlevnadsgrad ser ut på kort och lång sikt.
 
-## Underrubrik igen
-Lite text
+## Lönsamhetsmått
+Equtiy Before Interest and Taxes (EBIT), Return on assets (ROA) och Return on Equtiy (ROE)
+
+## Nyföretagande
+
+## Överlevnadsgrad
+
+# Export och import
+Här tittar vi på näringslivet i Dalarnas export- och importvolymer.
+
+# En genomgång av arbetskraftens sammansättning?
+		a. Vilka är det som är sysselsatta? Inkomster, utbildning, matchning?
+		b. Hur ser arbetskraftsreserven ut? Vilken potential finns det för näringslivet i den delen?
+
+# Det lokala företagandet
+
+# Det sociala företagandet
+
+# Det hållbara företagandet
+
+# Avslutande diskussion
+Vad kan vi säga om denna genomgång?
 
 <div class="tocify-extend-page" data-unique="tocify-extend-page" style="height: 200px;"></div>
 
