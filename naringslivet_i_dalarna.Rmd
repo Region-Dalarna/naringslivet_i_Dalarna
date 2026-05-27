@@ -77,6 +77,8 @@ Här ska vi ha en sammanfattning av rapporten. Det ska vara en punktlista med de
 
 Syftet med denna rapport är att...?
 
+Röd tråd! Viktigt att det som är med behövs för att ge en bra berättelse. Ge en kort sammanfattning inledningsvis i respektive avsnitt?
+
 Vad vill vi uppnå? Hur gör vi det smidigast? Övergripande slutsatser och analys i rapport med ett fåtal diagram som stödjer slutsatser, men möjlighet att länka vidare till en mer omfattande rapport (Shiny?) där användaren kan ta del av mer detaljer kring näringslivet i länet?
 
 I denna rapport beskrivs näringslivet i Dalarna. Rapporten inleds med en övergripande bild av näringslivet, följt av en genomgång av länets utveckling när det gäller länets bruttoregionprodukt och företagens lönsamhet. Därefter ges information och import, export samt sysselsättning. Rapporten avslutas med avsnitt som behandlar lokalt, socialt samt hållbart företagande i länet.
@@ -85,17 +87,18 @@ Att beskriva näringslivet i länet är utmanande och kräver vissa preciseringa
 
 <ul>
 
-<li>Minst 1 anställd, eller </li>
-
-<li>Minst X kronor i omsättning </li>
+<li>Minst 500 000 kronor i omsättning </li>
     
-<li>Status som aktiva? </li>
+<li>Status som aktiva och F-skatt </li>
 <br>
 
 Vilket datum gäller för uttag ur FDB?
 
 Verksamheter inom offentlig sektor är exkluderade, även om de har betydelse för företag i privat sektor i form av kunder. Således kan förändringar inom offentligt sektor få effekt på utvecklingen för företag i privat sektor.
 
+Var tydlig med när den offentliga sektorn är inkluderad eller inte. När behövs den för att sätta proportioner mot det privata?
+
+Arbetsställen behöver också hanteras i någon form
 
 # Dalarnas näringsliv - en överblick
 Några övergripande basfakta om Dalarnas näringsliv
@@ -120,7 +123,7 @@ Bubbeldiagrammet?
 ## Kommunala variationer
 Här kommenterar vi hur det ser ut i våra kommuner, vilka skillnader som finns m m.
 
-# Konjunkturen
+# Konjunkturen (eventuellt bort och hänvisa till annan rapport)
 Finns det behov av att visa på vilket konjunkturläge som råder innan vi visar hur det går i näringslivet? Något från SCB:s konjunkturklocka som kan nyttjas?
 
 ## Underrubrik igen
@@ -148,14 +151,15 @@ Karta över nyföretagande per 1000 invånare per kommun
 
 
 
-# Export och import
+# Export och import (internationalisering av någon form?)
 Här tittar vi på näringslivet i Dalarnas export- och importvolymer. Något att hämta från Peters exportarbete?
 
-# En genomgång av arbetskraftens sammansättning?
+Tillväxtanalys har information om utlandsägande m m
+
+# En genomgång av arbetskraftens sammansättning? Vad är viktigt för att förstå näringslivet
 Vilka är det som är sysselsatta? 
 I vilka branscher?
 Inkomster, utbildning, matchning, pendlare?
-Hur ser arbetskraftsreserven ut? 
 Vilken potential finns det för näringslivet i den delen?
 
 # Det lokala företagandet
