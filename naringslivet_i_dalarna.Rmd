@@ -92,19 +92,11 @@ Ett antal diagram som ger en bild av näringslivets sammansättning i Dalarna.
 ## Branscher - omsättning och sysselsatta
 Bubbeldiagrammet?
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align="center"}
-gg_skogsmark$areal_skyddad_skogsmark_Dalarna
-```
-
 ## Kommunala variationer
 Här kommenterar vi hur det ser ut i våra kommuner, vilka skillnader som finns m m.
 
 # Konjunkturen
-Testfigur som inte skall vara med i rapporten
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align="center"}
-gg_skogsmark$andel_skyddad_skogsmark_Dalarna
-```
+Något från SCB:s konjunkturklocka som kan nyttjas?
 
 ## Underrubrik igen
 Lite text
