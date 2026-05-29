@@ -75,15 +75,21 @@ Här ska vi ha en sammanfattning av rapporten. Det ska vara en punktlista med de
 
 # Introduktion {-}
 
+Rapporten redovisar olika delar som är viktiga för att förstå näringslivet i Dalarna. Det innebär att i vissa delar även inkludera offentlig sektor i 
+
 Syftet med denna rapport är att...?
 
 Röd tråd! Viktigt att det som är med behövs för att ge en bra berättelse. Ge en kort sammanfattning inledningsvis i respektive avsnitt?
 
 Vad vill vi uppnå? Hur gör vi det smidigast? Övergripande slutsatser och analys i rapport med ett fåtal diagram som stödjer slutsatser, men möjlighet att länka vidare till en mer omfattande rapport (Shiny?) där användaren kan ta del av mer detaljer kring näringslivet i länet?
 
-I denna rapport beskrivs näringslivet i Dalarna. Rapporten inleds med en övergripande bild av näringslivet, följt av en genomgång av länets utveckling när det gäller länets bruttoregionprodukt och företagens lönsamhet. Därefter ges information och import, export samt sysselsättning. Rapporten avslutas med avsnitt som behandlar lokalt, socialt samt hållbart företagande i länet.
+I denna rapport beskrivs näringslivet i Dalarna. Näringslivet definieras som de delar i ekonomin som tillverkas och säljs på en marknad, både varor och tjänster, och är i huvudsak privat ägd. I näringslivet ingår dock även offentlig verksamhet som drivs i bolagsform. Renodlad offentlig verksamhet som finansieras genom skatter och avgifter ingår inte i näringslivsdefinitionen. Däremot är den offentliga verksamheten ofta viktig för näringslivet, vilket gör att den behöver beskrivas och ställas i relation till näringslivet för att förstå hela ekonomin. 
 
-Att beskriva näringslivet i länet är utmanande och kräver vissa preciseringar och avgränsningar för att vara genomförbart. I denna rapport utgår sammanställningen från privata företag som finns i SCB:s Företagsdatabas och de inkluderade företagen har avgränsats till att ha
+Rapporten inleds med en övergripande bild av näringslivet, följt av en genomgång av länets utveckling när det gäller länets bruttoregionprodukt och företagens lönsamhet. Därefter ges information och import, export samt sysselsättning. Rapporten avslutas med avsnitt som behandlar lokalt, socialt samt hållbart företagande i länet.
+
+Syftet med rapporten är att beskriva näringslivet i Dalarna och dess förutsättningar. Den huvudsakliga källan är SCB. Ambitionen är inte att ge en dagsaktuell bild av läget i näringslivet, utan en bredare beskrivning. Det innebär att de data som används är i stora delar för kalenderåret 2024. 
+
+Urvalet av verksamheter som ingår hämtas från SCB:s Företagsdatabas och de inkluderade företagen har avgränsats till att ha
 
 <ul>
 
