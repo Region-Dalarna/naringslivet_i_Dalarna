@@ -73,15 +73,25 @@ Här ska vi ha en sammanfattning av rapporten. Det ska vara en punktlista med de
 
 <li>Fjärde punkten. </li>
 
+</ul>
+
 # Introduktion {-}
 
 Röd tråd! Viktigt att det som är med behövs för att ge en bra berättelse. 
 
 Vad vill vi uppnå? Hur gör vi det smidigast? Övergripande slutsatser och analys i rapport med ett fåtal diagram som stödjer slutsatser, men möjlighet att länka vidare till en mer omfattande rapport (Shiny?) där användaren kan ta del av mer detaljer kring näringslivet i länet?
 
+Bidra med kunskap om länets näringsliv och vägleda strategiska och finansiella insatser.
+Öka kunskapen om Dalarnas näringslivsstruktur och utveckling.
+
 I denna rapport beskrivs näringslivet i Dalarna. Näringslivet definieras som de delar i ekonomin som tillverkas och säljs på en marknad, både varor och tjänster, och är i huvudsak privat ägd. I näringslivet ingår dock även offentlig verksamhet som drivs i bolagsform. Renodlad offentlig verksamhet som finansieras genom skatter och avgifter ingår inte i näringslivsdefinitionen. Däremot är den offentliga verksamheten ofta viktig för näringslivet, vilket gör att den behöver beskrivas och ställas i relation till näringslivet för att förstå hela ekonomin. 
 
 Rapporten inleds med en övergripande bild av näringslivet, följt av en genomgång av länets utveckling när det gäller länets bruttoregionprodukt och företagens lönsamhet. Därefter ges information och import, export samt sysselsättning. Rapporten avslutas med avsnitt som behandlar lokalt, socialt samt hållbart företagande i länet.
+
+Vilka är betydande för Dalarnas ekonomi - nu och historiskt?
+Hur konkurrenskraftiga är företag och branscher i ett nationellt perspektiv?
+Hur ser branschstrukturen ut - mix av stora och små, lönsamma företag?
+Koppling mot internationella marknader, kunskapsintensitet och förnyelseförmåga?
 
 Syftet med rapporten är att beskriva näringslivet i Dalarna och dess förutsättningar. Den huvudsakliga källan är SCB. Ambitionen är inte att ge en dagsaktuell bild av läget i näringslivet, utan en bredare beskrivning. Det innebär att de data som används är i stora delar för kalenderåret 2024. 
 
@@ -92,7 +102,8 @@ Urvalet av verksamheter som ingår hämtas från SCB:s Företagsdatabas och de i
 <li>Minst 500 000 kronor i omsättning </li>
     
 <li>Status som aktiva och F-skatt </li>
-<br>
+
+</ul>
 
 Vilket datum gäller för uttag ur FDB?
 
@@ -113,6 +124,8 @@ Antal företag i urvalet
 Antal anställda
 Omsättning
 
+https://www.foretagsklimat.se/dalarnas-lan
+
 Grov branschindelning med omsättning och sysselsättning per bransch
 5 största företagen per bransch och deras omsättning och sysselsättning
 
@@ -123,7 +136,8 @@ Skapa kommunflikar med motsvarande indelning som är klickbara
 Total import och export?
 
 Förändring i näringslivets sammansättning de senaste x åren?
- 
+
+LA- och FA-regioner?
 
 ## Näringslivets omfattning, utveckling och geografisk fördelning
 Ett antal diagram som ger en bild av näringslivets sammansättning i Dalarna.
@@ -132,6 +146,11 @@ Största arbetsgivare i länet och per kommun.
 
 ## Branscher - omsättning och sysselsatta
 Bubbeldiagrammet?
+
+Blekinge använder samma indelning som Region Skåne, vilket är 40 olika branscher utifrån SNI-indelning.
+Små branscher exkluderas (<50 anställda).
+Exkluderar även vissa företag som har stora kapitalrörelser mellan åren, fastighet, finans, försäkring
+Justering av löpande till fasta priser?
 
 ## Kommunala variationer
 Här kommenterar vi hur det ser ut i våra kommuner, vilka skillnader som finns m m.
@@ -145,19 +164,30 @@ Mer aktuella delar får flyttas in i "Det samhällsekonomiska läget" och vi hä
 
 Finns det behov av att visa på vilket konjunkturläge som råder innan vi visar hur det går i näringslivet? Något från SCB:s konjunkturklocka som kan nyttjas?
 
-Sammanställning av utvecklingen av tillväxt, förädlingsvärden, produktivitet, lönesummor per bransch och skattekraft. 
+Sammanställning av utvecklingen av tillväxt, förädlingsvärden, produktivitet, lönesummor per bransch och skattekraft.
+
+Förädlingsvärdet mäts vanligen som värdet av företagets produktion minus värdet 
+av insatsvarorna i produktionen och utgör ett företags bidrag till landets BNP. Summan av alla 
+förädlingsvärden vid samtliga arbetsställen utgör landets BNP. På motsvarande sätt är summan av de 
+förädlingsvärden som genereras vid samtliga arbetsställen i en region bruttoregional produkten (BRP). Per 
+definition summerar regionernas BRP upp till landets BNP.
 
 ## Tillväxt
 Vad kan vi säga om utvecklingen när det gäller ekonomisk tillväxt?
+Den ekonomiska tillväxten mäts som förändringen i Bruttonationalprodukten (BNP) mellan två tidsperioder. Det ekonomiska välståndet definieras som nivån på BNP vid en viss tidpunkt.
 
 ## Produktivitet
-Hur har arbetsproduktiviteten utvecklats i länet? 
+Hur har arbetsproduktiviteten utvecklats i länet? För att mäta produktivitet används arbetsproduktiviteten som definieras som förädlingsvärdet per arbetsinsats (vanligen antal arbetade timmar). Enklare uttryckt visar arbetsproduktiviteten hur mycket värde som skapas per arbetad timma. På regional nivå finns inte arbetade timmar tillgängligt, vilket innebär att produktiviteten mäts genom förädlingsvärdet dividerat med antal sysselsatta. 
 
 ## Förädlingsvärden
-Förädlingsvärden förklaras och redovisas per bransch om möjligt
+Förädlingsvärden förklaras och redovisas per bransch om möjligt.
+Ett företags förädlingsvärde är det värde som skapas i verksamheten, eller enklare uttryckt det värde som företaget självt skapar. Förädlingsvärdet mäts vanligen som värdet av företagets produktion minus värdet av insatsvarorna i produktionen och utgör ett företags bidrag till landets BNP. Summan av alla förädlingsvärden vid samtliga arbetsställen utgör landets BNP. På motsvarande sätt är summan av de förädlingsvärden som genereras vid samtliga arbetsställen i en region bruttoregional produkten (BRP). Per definition summerar regionernas BRP upp till landets BNP.
 
 # Företagens lönsamhet
 Här tittar vi på lönsamhetsmått, hur nyföretagandet utvecklas och hur företagens överlevnadsgrad ser ut på kort och lång sikt.
+
+# Shift-share eller specialisering?
+Är det här något vi borde inkludera?
 
 ## Lönsamhetsmått
 Earnings Before Interest and Taxes (EBIT), Return on Assets (ROA) och Return on Equtiy (ROE).
