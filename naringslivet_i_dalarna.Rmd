@@ -22,7 +22,10 @@ knitr::opts_chunk$set(echo = FALSE, fig.height=5, fig.width=8, fig.align='center
 # Nödvändiga paket
 if (!require('pacman')) install.packages('pacman')
 p_load(tidyverse,
-       here)
+       here,
+       rKolada,
+       sf,
+       ggiraph)
 
 # Funktioner som behövs (hämtas från Git-Hub)
 source('https://raw.githubusercontent.com/Region-Dalarna/funktioner/main/func_SkapaDiagram.R')
@@ -144,6 +147,10 @@ Ett antal diagram som ger en bild av näringslivets sammansättning i Dalarna.
 
 Största arbetsgivare i länet och per kommun.
 
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_storsta_arbetsgivare$storsta_arbetsgivare
+```
+
 ## Branscher - omsättning och sysselsatta
 Bubbeldiagrammet?
 
@@ -151,6 +158,14 @@ Blekinge använder samma indelning som Region Skåne, vilket är 40 olika bransc
 Små branscher exkluderas (<50 anställda).
 Exkluderar även vissa företag som har stora kapitalrörelser mellan åren, fastighet, finans, försäkring
 Justering av löpande till fasta priser?
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_nettoomsattning_bransch[[1]]
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_antal_anstallda_bransch[[1]]
+```
 
 ## Kommunala variationer
 Här kommenterar vi hur det ser ut i våra kommuner, vilka skillnader som finns m m.
@@ -176,12 +191,32 @@ definition summerar regionernas BRP upp till landets BNP.
 Vad kan vi säga om utvecklingen när det gäller ekonomisk tillväxt?
 Den ekonomiska tillväxten mäts som förändringen i Bruttonationalprodukten (BNP) mellan två tidsperioder. Det ekonomiska välståndet definieras som nivån på BNP vid en viss tidpunkt.
 
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_brp_invanare[[1]]
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_brp_invanare[[2]]
+```
+
 ## Produktivitet
 Hur har arbetsproduktiviteten utvecklats i länet? För att mäta produktivitet används arbetsproduktiviteten som definieras som förädlingsvärdet per arbetsinsats (vanligen antal arbetade timmar). Enklare uttryckt visar arbetsproduktiviteten hur mycket värde som skapas per arbetad timma. På regional nivå finns inte arbetade timmar tillgängligt, vilket innebär att produktiviteten mäts genom förädlingsvärdet dividerat med antal sysselsatta. 
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_brp_per_sysselsatt$brp_sysselsatt_Sverige
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_brp_per_sysselsatt$brp_sysselsatt_tid_Dalarna
+```
 
 ## Förädlingsvärden
 Förädlingsvärden förklaras och redovisas per bransch om möjligt.
 Ett företags förädlingsvärde är det värde som skapas i verksamheten, eller enklare uttryckt det värde som företaget självt skapar. Förädlingsvärdet mäts vanligen som värdet av företagets produktion minus värdet av insatsvarorna i produktionen och utgör ett företags bidrag till landets BNP. Summan av alla förädlingsvärden vid samtliga arbetsställen utgör landets BNP. På motsvarande sätt är summan av de förädlingsvärden som genereras vid samtliga arbetsställen i en region bruttoregional produkten (BRP). Per definition summerar regionernas BRP upp till landets BNP.
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_foradlingsvarde_bransch[[1]]
+```
 
 # Företagens lönsamhet
 Här tittar vi på lönsamhetsmått, hur nyföretagandet utvecklas och hur företagens överlevnadsgrad ser ut på kort och lång sikt.
@@ -196,6 +231,60 @@ Earnings Before Interest and Taxes (EBIT), Return on Assets (ROA) och Return on 
 Hur är situationen när det gäller tillkomsten av nya företag och hur ser överlevnadsgraden ut över tid? Startas det många bolag som sedan inte finns kvar efter några år?
 
 Karta över nyföretagande per 1000 invånare per kommun
+
+```{r, include = FALSE}
+  
+  nystartade_df <- hamta_kolada_df(kpi = "N00999",hamtakommuner("20",tamedlan = TRUE,tamedriket = TRUE),valda_ar = "9999") %>% 
+    mutate(regionkod = as.integer(regionkod),
+           grupp = case_when(varde < 5 ~ "0-5",
+                           varde >= 5 & varde < 10 ~ "5-10",
+                           varde >= 10 & varde < 15 ~ "10-15",
+                           varde >= 15 ~ "15+"),
+           varde = round(varde)) 
+ 
+mapp_scbadmgranser <- "G:/Samhällsanalys/GIS/grundkartor/KommunerDalarna/"
+#G:\Samhällsanalys\GIS\grundkartor\Adm gränser med kustgränser
+filnamn_kommuner <- "Dalarna_kommuner.shp"
+
+sokvag_kommuner_sv <- paste0(mapp_scbadmgranser, filnamn_kommuner)
+
+kommuner_sv <- st_read(sokvag_kommuner_sv,options = "ENCODING=WINDOWS-1252")
+
+# lägg ihop kommunpolygonerna med brp per kommun-statistiken
+nystartade_kommun_gis <- left_join(kommuner_sv, nystartade_df, by = c("KOMMUNKOD" = "regionkod")) 
+ nystartade_kommun_gis$grupp <- factor(nystartade_kommun_gis$grupp,levels=c("0-5","5-10","10-15","15+")) 
+
+ karta <- ggplot(nystartade_kommun_gis,
+       aes(fill = grupp,
+           label = KOMMUNNAMN,tooltip=paste("Kommun:",KOMMUNNAMN,"<br>","Antal per 1000 invånare: ",varde))) +
+  geom_sf_interactive() +
+  scale_fill_manual(values = colorRampPalette(c("#93cec1", "#0e5a4c"))(4)) +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
+        panel.background = element_rect(fill = "white", colour = 'white'),
+        plot.caption = element_text(hjust = 0),
+        legend.position = "right") +
+  labs(title = paste0("Nystartade företag i Dalarna år ",unique(nystartade_kommun_gis$ar)),
+       subtitle = "",
+       yaxis = "",
+       fill = "Antal per 1000 invånare",
+       caption = "Källa: Tillväxtanalys (via Kolada)\nBearbetning: Samhällsanalys, Region Dalarna.\nDiagramförklaring: För ytterligare information, rör muspekaren över kartan.") 
+
+ karta <- girafe(ggobj=karta)
+
+ karta <-girafe_options(karta,opts_tooltip(opacity = 1,css = "padding:4pt;font-size:0.7rem;color:black;background-color:rgba(255,255,255,0.7);border-radius:5pt;font-weight: 600",
+                                           offx = 25,
+                                           use_cursor_pos = TRUE))
+
+  
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=10, fig.width=10, fig.alt = "Karta över Dalarna där olika nivåer av arbetslöshet visas med olika nyanser av grönt"}
+karta
+
+```
 
 # Internationella relationer
 Här tittar vi på näringslivet i Dalarnas export- och importvolymer. Något att hämta från det pågående arbetet med export- och insammanställning?
