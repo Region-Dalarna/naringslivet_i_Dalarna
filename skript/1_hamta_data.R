@@ -31,21 +31,21 @@ if(uppdatera_data == TRUE){
   start_time <- Sys.time()
 
   # Förädlingsvärde
-  source(here("skript","diag_fek_bransch_fran_2022.R"), encoding="UTF-8")
+  source(here("skript","diag_fek_bransch_fran_2022_korrekt.R"), encoding="UTF-8")
   gg_foradlingsvarde_bransch <- funktion_upprepa_forsok_om_fel( function() {diag_fek_bransch_lan_scb(skriv_diagramfil = spara_figurer,
                                                                                                      output_mapp = output_mapp_figur,
                                                                                                      returnera_data_rmarkdown = TRUE)
   }, hoppa_over = hoppa_over_felhantering)
   
   # Nettoomsättning
-  source(here("skript","diag_fek_bransch_fran_2022.R"), encoding="UTF-8")
+  source(here("skript","diag_fek_bransch_fran_2022_korrekt.R"), encoding="UTF-8")
   gg_nettoomsattning_bransch <- funktion_upprepa_forsok_om_fel( function() {diag_fek_bransch_lan_scb(cont_klartext = "Nettoomsättning exkl. merchantingkostnader, mnkr",
                                                                                                      skriv_diagramfil = spara_figurer,
                                                                                                      output_mapp = output_mapp_figur,
                                                                                                      returnera_data_rmarkdown = TRUE)
   }, hoppa_over = hoppa_over_felhantering)
   
-  source(here("skript","diag_fek_bransch_fran_2022.R"), encoding="UTF-8")
+  source(here("skript","diag_fek_bransch_fran_2022_korrekt.R"), encoding="UTF-8")
   gg_antal_anstallda_bransch <- funktion_upprepa_forsok_om_fel( function() {diag_fek_bransch_lan_scb(cont_klartext = "Antal anställda",
                                                                                                      skriv_diagramfil = spara_figurer,
                                                                                                      output_mapp = output_mapp_figur,
