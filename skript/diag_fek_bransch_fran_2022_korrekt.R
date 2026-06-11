@@ -65,7 +65,7 @@ diag_fek_bransch_lan_scb <- function(
   
   gg_list <- list()
   
-  # Bruttoregionprodukt (BRP), sysselsatta och löner (ENS2010) efter region (län, riksområde). År 2000-2024
+  # Hämrat data från företagens ekonomi
   foradl_df <- pxweb2_hamta_data(
     tabell = "TAB6329",
     query = list(
@@ -132,19 +132,18 @@ diag_fek_bransch_lan_scb <- function(
   }
   
   if(length(unique(chart_df$år)) < 2){
-    diagramfil <- glue("{safe_name}_bransch_{region_vekt %>% paste0(collapse = '_')}_ar{ar_txt}.png")
+    diagramfil <- glue("{safe_name}_bransch_{region_vekt %>% paste0(collapse = '_')}_ar_{first(unique(chart_df$år))}_{last(unique(chart_df$år))}.png")
   } else {
     diagramfil <- glue("{safe_name}_bransch_{region_vekt %>% paste0(collapse = '_')}_ar{ar_txt}.png")
   }
-  diagramfil <- glue("{safe_name}_bransch_{region_vekt %>% paste0(collapse = '_')}_ar_{first(unique(chart_df$år))}_{last(unique(chart_df$år))}.png")
+  
   
   
   gg_obj <- SkapaStapelDiagram(
     skickad_df = chart_df,
     skickad_x_var = "Branschgrupp",
     skickad_y_var = "varde",
-    skickad_x_grupp = ifelse(length(unique(chart_df$år)) > 1, "år", NULL),
-    diagram_titel = diagramtitel,
+    skickad_x_grupp = if (length(unique(chart_df$år)) > 1) "år" else NULL,
     diagram_capt = diagram_capt,
     x_axis_sort_value = TRUE,
     stodlinjer_avrunda_fem = TRUE,
