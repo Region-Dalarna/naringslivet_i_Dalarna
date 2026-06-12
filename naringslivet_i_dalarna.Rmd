@@ -304,7 +304,36 @@ Här tittar vi på näringslivet i Dalarnas export- och importvolymer. Något at
 ## Import
 
 ## Utländskt ägande
+
 Tillväxtanalys har information om utlandsägande m m
+
+Antal anställda
+
+Bransch
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_utlandskt_agande_anstallda[[1]]
+```
+
+Ägarland
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_utlandskt_agande_anstallda[[2]]
+```
+
+Antal arbetsställen
+
+Bransch
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_utlandskt_agande_arbetsstallen[[1]]
+```
+
+Ägarland
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_utlandskt_agande_arbetsstallen[[2]]
+```
 
 # Arbetskraften  
 Vad är viktigt för näringslivsperspektivet?

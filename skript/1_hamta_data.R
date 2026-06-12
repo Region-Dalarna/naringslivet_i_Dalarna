@@ -10,7 +10,7 @@
 
 hoppa_over_felhantering = FALSE
 
-uppdatera_data = FALSE
+uppdatera_data = TRUE
 spara_figurer = FALSE
 
 if (!require("pacman")) install.packages("pacman")
@@ -61,11 +61,28 @@ if(uppdatera_data == TRUE){
                                                                                               spara_figur = spara_figurer)
   }, hoppa_over = hoppa_over_felhantering)
   
+  # Tillväxt
   source("https://raw.githubusercontent.com/Region-Dalarna/diagram/refs/heads/main/diag_brp_per_inv_scb.R")
   gg_brp_invanare <- funktion_upprepa_forsok_om_fel( function() { diag_brp_per_inv_scb(region_vekt = "20",
                                                                                        output_mapp = output_mapp_figur,
                                                                                        returnera_data_rmarkdown  = TRUE,
                                                                                        skriv_diagramfil = spara_figurer)
+  }, hoppa_over = hoppa_over_felhantering)
+ 
+  # Utländskt ägande - antal anställda
+  source(here("skript","diag_utlanskt_agande_anstallda_arbetsstallen.R"), encoding="UTF-8")
+  gg_utlandskt_agande_anstallda <- funktion_upprepa_forsok_om_fel( function() {diag_utlandskt_agande_bransch_land(cont_klartext = "Antal anställda",
+                                                                                                                  skriv_diagramfil = spara_figurer,
+                                                                                                                  output_mapp = output_mapp_figur,
+                                                                                                                  returnera_data_rmarkdown = TRUE)
+  }, hoppa_over = hoppa_over_felhantering)
+  
+  # Utländskt ägande - antal arbetsställen
+  source(here("skript","diag_utlanskt_agande_anstallda_arbetsstallen.R"), encoding="UTF-8")
+  gg_utlandskt_agande_arbetsstallen <- funktion_upprepa_forsok_om_fel( function() {diag_utlandskt_agande_bransch_land(cont_klartext = "Antal arbetsställen",
+                                                                                                                      skriv_diagramfil = spara_figurer,
+                                                                                                                      output_mapp = output_mapp_figur,
+                                                                                                                      returnera_data_rmarkdown = TRUE)
   }, hoppa_over = hoppa_over_felhantering)
   
   # Sparar global environment i R. Detta för att man skall slippa hämta data varje gång

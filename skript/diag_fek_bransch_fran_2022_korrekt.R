@@ -145,6 +145,7 @@ diag_fek_bransch_lan_scb <- function(
     skickad_y_var = "varde",
     skickad_x_grupp = if (length(unique(chart_df$år)) > 1) "år" else NULL,
     diagram_capt = diagram_capt,
+    diagram_titel = diagramtitel,
     x_axis_sort_value = TRUE,
     stodlinjer_avrunda_fem = TRUE,
     filnamn_diagram = diagramfil,
