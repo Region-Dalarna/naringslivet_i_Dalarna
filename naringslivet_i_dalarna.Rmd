@@ -221,9 +221,6 @@ gg_foradlingsvarde_bransch[[1]]
 # Företagens lönsamhet
 Här tittar vi på lönsamhetsmått, hur nyföretagandet utvecklas och hur företagens överlevnadsgrad ser ut på kort och lång sikt.
 
-# Shift-share eller specialisering?
-Är det här något vi borde inkludera?
-
 ## Lönsamhetsmått
 Earnings Before Interest and Taxes (EBIT), Return on Assets (ROA) och Return on Equtiy (ROE).
 
@@ -285,6 +282,19 @@ nystartade_kommun_gis <- left_join(kommuner_sv, nystartade_df, by = c("KOMMUNKOD
 karta
 
 ```
+
+# Shift-share eller specialisering?
+Är det här något vi borde inkludera? En vanlig metod för att analysera utvecklingen är att använda sig av en så kallad shift-share analys. Metoden är ett verktyg för att identifiera dels inom vilka branscher länet växer, dels hur väl länet har presterat i relation till riket. Givet utvecklingen av svensk ekonomi och konjunkturen i branscher kan vi identifiera ett förväntade utfall som relateras till det faktiska utfallet i sysselsättning. 
+
+Analysen kvantifierar således den regionala prestationen och gör det möjligt att identifiera branscher med en särskilt god utveckling i länet och som inte kan förklaras av den svenska ekonomins utveckling i stort eller av branschens konjunkturutveckling oavsett om det är växande eller krympande bransch. I de branscherna antas länet ha särskilda fördelar och stark konkurrenskraft. Analysen syftar således till att besvara hur stor del av utvecklingen i en bransch som kan förklaras av regionala faktorer.
+
+En LA-regions allmänna specialisering mäts genom att studera regionens avvikelse från Sveriges genomsnitt. 
+Måttet beräknas enligt följande ekvation:
+(1⁄2) ∑|𝑆𝑗𝑟 − 𝑆𝑗|100
+
+𝑆𝑗𝑟 = andelen sysselsatta i bransch j i LA-region r
+𝑆𝑗 = andelen sysselsatta i bransch j i Sverige som helhet
+|𝑆𝑗𝑟 − 𝑆𝑗| = det positiva värdet av skillnaden mellan andelen sysselsatta i bransch j i region r och andelen sysselsatta i bransch j i hela landet
 
 # Internationella relationer
 Här tittar vi på näringslivet i Dalarnas export- och importvolymer. Något att hämta från det pågående arbetet med export- och insammanställning?
