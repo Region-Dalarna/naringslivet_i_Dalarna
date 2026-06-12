@@ -29,6 +29,15 @@ if(uppdatera_data == TRUE){
   
   cat("Hämtning av data påbörjad\n")
   start_time <- Sys.time()
+  
+  # Antal aktiva företag
+  # Utländskt ägande - antal arbetsställen
+  source(here("skript","diag_aktiva_foretag_mm_tva.R"), encoding="UTF-8")
+  gg_aktiva_foretag <- funktion_upprepa_forsok_om_fel( function() {diag_aktiva_foretag_bransch_lan(cont_klartext = "Antal aktiva företag",
+                                                                                                   skriv_diagramfil = spara_figurer,
+                                                                                                   output_mapp = output_mapp_figur,
+                                                                                                   returnera_data_rmarkdown = TRUE)
+  }, hoppa_over = hoppa_over_felhantering)
 
   # Förädlingsvärde
   source(here("skript","diag_fek_bransch_fran_2022_korrekt.R"), encoding="UTF-8")

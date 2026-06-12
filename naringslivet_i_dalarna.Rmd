@@ -151,6 +151,12 @@ Största arbetsgivare i länet och per kommun.
 gg_storsta_arbetsgivare$storsta_arbetsgivare
 ```
 
+Antal aktiva företag
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_aktiva_foretag[[1]]
+```
+
 ## Branscher - omsättning och sysselsatta
 Bubbeldiagrammet?
 
