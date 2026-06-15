@@ -1,4 +1,4 @@
-diag_aktiva_foretag_bransch_lan <- function(
+diag_aktiva_foretag_storleksklass_lan <- function(
     region_vekt = "20",			# Val av region. Finns: "00", "01", "03", "04", "05", "06", "07", "08", "09", "10", "12", "13", "14", "17", "18", "19", "20", "21", "22", "23", "24", "25", "SE0", "SE00", "SE1", "SE11", "SE110", "SE12", "SE121", "SE122", "SE123", "SE124", "SE125", "SE2", "SE21", "SE211", "SE212", "SE213", "SE214", "SE22", "SE221", "SE224", "SE23", "SE231", "SE232", "SE3", "SE31", "SE311", "SE312", "SE313", "SE32", "SE321", "SE322", "SE33", "SE331", "SE332"
     cont_klartext = "Antal aktiva företag",			 # Max 1 åt gången. #  #  Finns: "Antal aktiva företag", "Antal nyetablerade företag", "Antal nedlagda företag", "Antal anställda", "Antal anställda i nyetablerade företag", "Antal anställda i nedlagda företag"
     tid_koder = "9999",			 # "*" = alla år. Finns från 2023. Max 1 åt gången. 9999 ger senaste år
@@ -44,7 +44,7 @@ diag_aktiva_foretag_bransch_lan <- function(
   source("https://raw.githubusercontent.com/Region-Dalarna/funktioner/main/func_SkapaDiagram.R", encoding = "utf-8")
   source("https://raw.githubusercontent.com/Region-Dalarna/funktioner/main/func_API.R", encoding = "utf-8")
   source("https://raw.githubusercontent.com/Region-Dalarna/funktioner/main/func_text.R", encoding = "utf-8")
-  source("https://raw.githubusercontent.com/Region-Dalarna/hamta_data/refs/heads/main/hamta_aktiva_foretag_mm_tid_lan_bransch_tva.R")
+  source("https://raw.githubusercontent.com/Region-Dalarna/hamta_data/refs/heads/main/hamta_aktiva_foretag_mm_tid_lan_storleksklass_tva.R")
   
   "G:/skript/jon/Slask/hamta__tid_lan_bransch_variabel__tva.R"
   # om ingen färgvektor är medskickad, kolla om funktionen diagramfärger finns, annars använd r:s defaultfärger
@@ -64,22 +64,33 @@ diag_aktiva_foretag_bransch_lan <- function(
     }
   }
   
+  # Funktion som hanterar storleksklasserna
+  
+  
+  clean_storleksklass <- function(x) {
+    x %>%
+      str_replace("^0(\\d)", "\\1") %>%           # 01 -> 1, 00 -> 0
+      str_replace("([–-])0(\\d)", "\\1\\2") %>%   # 1–09 / 1-09 -> 1–9 / 1-9
+      str_replace("\\+$", " eller fler")          # 10+ -> 10 eller fler
+  }
+  
+  
   gg_list <- list()
   
   if(diag_vanlig == TRUE){
-  
+    
     # Hämrat data från Tillväxtanalys och tar bort onödig text från branscher
-    foretag_df <- hamta_aktiva_foretag_mm_tid_lan_bransch_variabel_tva(region_vekt = region_vekt,
-                                                                       variabel_klartext = cont_klartext,
-                                                                       tid_koder = tid_koder,
-                                                                       bransch_klartext = "*") %>% 
-      mutate(bransch = str_replace(bransch,"^[A-ZÅÄÖ](?:\\s+till\\s+och\\s+med\\s+[A-ZÅÄÖ]|(?:\\s+och\\s+[A-ZÅÄÖ])*)(?:\\s+exklusive\\s+\\d+)?\\s+",""),
+    foretag_df <- hamta_aktiva_foretag_mm_tid_lan_storleksklass_variabel_tva(region_vekt = region_vekt,
+                                                                             variabel_klartext = cont_klartext,
+                                                                             tid_koder = tid_koder,
+                                                                             storleksklass_klartext = "*") %>%
+      mutate(storleksklass = clean_storleksklass(storleksklass),
              region = skapa_kortnamn_lan(region)) %>% 
       rename(varde = last_col())
-  
+    
     region_txt <- unique(foretag_df$region)
     ar_txt <- unique(foretag_df$år)
-  
+    
     variabel_txt <- unique(foretag_df$variabel)
     
     
@@ -88,19 +99,19 @@ diag_aktiva_foretag_bransch_lan <- function(
     safe_name <- make_clean_names(variabel_txt)
     
     if(returnera_data_rmarkdown == TRUE){
-      assign(paste0(safe_name,"_df"), foretag_df, envir = .GlobalEnv)
+      assign(paste0(safe_name,"storleksklass_df"), foretag_df, envir = .GlobalEnv)
     }
     
-    diagramfil <- glue("{safe_name}_bransch_{region_txt}_ar{ar_txt}.png")
+    diagramfil <- glue("{safe_name}_storleksklass_{region_txt}_ar{ar_txt}.png")
     
     gg_obj <- SkapaStapelDiagram(
       skickad_df = foretag_df,
-      skickad_x_var = "bransch",
+      skickad_x_var = "storleksklass",
       skickad_y_var = "varde",
       diagram_capt = diagram_capt,
       diagram_titel = diagramtitel,
       x_axis_sort_value = TRUE,
-      diagram_liggande = TRUE,
+      #diagram_liggande = TRUE,
       stodlinjer_avrunda_fem = TRUE,
       filnamn_diagram = diagramfil,
       dataetiketter = visa_dataetiketter,
@@ -115,34 +126,34 @@ diag_aktiva_foretag_bransch_lan <- function(
     
     gg_list <- c(gg_list, list(gg_obj))
     names(gg_list)[[length(gg_list)]] <- diagramfil %>% str_remove(".png")
-  
+    
   }
   
   if(diag_facet == TRUE){
     # Hämrat data från Tillväxtanalys och tar bort onödig text från branscher
-    foretag_facet_df <- hamta_aktiva_foretag_mm_tid_lan_bransch_variabel_tva(region_vekt = region_vekt,
-                                                                             variabel_klartext = c("Antal aktiva företag", "Antal nyetablerade företag", "Antal nedlagda företag"),
-                                                                             tid_koder = tid_koder,
-                                                                             bransch_klartext = "*") %>% 
-      mutate(bransch = str_replace(bransch,"^[A-ZÅÄÖ](?:\\s+till\\s+och\\s+med\\s+[A-ZÅÄÖ]|(?:\\s+och\\s+[A-ZÅÄÖ])*)(?:\\s+exklusive\\s+\\d+)?\\s+",""),
+    foretag_facet_df <- hamta_aktiva_foretag_mm_tid_lan_storleksklass_variabel_tva(region_vekt = region_vekt,
+                                                                                   variabel_klartext = c("Antal aktiva företag", "Antal nyetablerade företag", "Antal nedlagda företag"),
+                                                                                   tid_koder = tid_koder,
+                                                                                   storleksklass_klartext = "*") %>% 
+      mutate(storleksklass = clean_storleksklass(storleksklass),
              region = skapa_kortnamn_lan(region)) %>% 
-        rename(varde = last_col()) 
+      rename(varde = last_col()) 
     
     
     region_txt <- unique(foretag_df$region)
     ar_txt <- unique(foretag_df$år)
     
     diagramtitel <- ""
-    diagramfil <- glue("antal_foretag_mm_facet_{region_txt}_ar_{ar_txt}.png")
+    diagramfil <- glue("antal_foretag_mm_storleksklass_facet_{region_txt}_ar_{ar_txt}.png")
     #safe_name <- make_clean_names(variabel_txt)
     
     if(returnera_data_rmarkdown == TRUE){
-      assign("antal_foretag_mm_facet_df", foretag_facet_df, envir = .GlobalEnv)
+      assign("antal_foretag_mm_storleksklass_facet_df", foretag_facet_df, envir = .GlobalEnv)
     }
     
     gg_obj <- SkapaStapelDiagram(
       skickad_df = foretag_facet_df %>% mutate(variabel =  variabel %>% str_replace("^Antal\\s+", "") |> str_to_sentence(locale = "sv")),
-      skickad_x_var = "bransch",
+      skickad_x_var = "storleksklass",
       skickad_y_var = "varde",
       diagram_capt = diagram_capt_facet,
       diagram_titel = diagramtitel,
@@ -167,7 +178,7 @@ diag_aktiva_foretag_bransch_lan <- function(
     gg_list <- c(gg_list, list(gg_obj))
     names(gg_list)[[length(gg_list)]] <- diagramfil %>% str_remove(".png")
   }
-
+  
   return(gg_list)
   
 } # slut diag-funktion

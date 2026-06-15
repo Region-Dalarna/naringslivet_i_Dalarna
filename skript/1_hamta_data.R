@@ -30,15 +30,39 @@ if(uppdatera_data == TRUE){
   cat("Hämtning av data påbörjad\n")
   start_time <- Sys.time()
   
-  # Antal aktiva företag
-  # Utländskt ägande - antal arbetsställen
+  # Antal aktiva, nystartade och nedlagda företag uppdelat på bransch (Tillväxtanalys)
   source(here("skript","diag_aktiva_foretag_mm_tva.R"), encoding="UTF-8")
   gg_aktiva_foretag <- funktion_upprepa_forsok_om_fel( function() {diag_aktiva_foretag_bransch_lan(cont_klartext = "Antal aktiva företag",
                                                                                                    skriv_diagramfil = spara_figurer,
                                                                                                    output_mapp = output_mapp_figur,
+                                                                                                   diag_facet = TRUE,
                                                                                                    returnera_data_rmarkdown = TRUE)
   }, hoppa_over = hoppa_over_felhantering)
+  
+  gg_nyetablerade_foretag <- funktion_upprepa_forsok_om_fel( function() {diag_aktiva_foretag_bransch_lan(cont_klartext = "Antal nyetablerade företag",
+                                                                                                    skriv_diagramfil = spara_figurer,
+                                                                                                    diagram_capt = "Källa: Tillväxtanalys. Bearbetning: Samhällsanalys, Region Dalarna.\nMed nyetablerade företag menas de företag som är helt nybildade eller har återupptagits efter att ha varit vilande i minst två år.",
+                                                                                                    output_mapp = output_mapp_figur,
+                                                                                                    returnera_data_rmarkdown = TRUE)
+  }, hoppa_over = hoppa_over_felhantering)
 
+  gg_nedlagda_foretag <- funktion_upprepa_forsok_om_fel( function() {diag_aktiva_foretag_bransch_lan(cont_klartext = "Antal nedlagda företag",
+                                                                                                         skriv_diagramfil = spara_figurer,
+                                                                                                         diagram_capt = "Källa: Tillväxtanalys. Bearbetning: Samhällsanalys, Region Dalarna.",
+                                                                                                         output_mapp = output_mapp_figur,
+                                                                                                         returnera_data_rmarkdown = TRUE)
+  }, hoppa_over = hoppa_over_felhantering)
+  
+  # Motsvarande fast uppdelat på storleksklass istället för bransch
+  source(here("skript","diag_aktiva_foretag_mm_storleksklass_tva.R"), encoding="UTF-8")
+  gg_aktiva_foretag_storleksklass <- funktion_upprepa_forsok_om_fel( function() {diag_aktiva_foretag_storleksklass_lan(cont_klartext = "Antal aktiva företag",
+                                                                                                   skriv_diagramfil = spara_figurer,
+                                                                                                   output_mapp = output_mapp_figur,
+                                                                                                   diag_facet = FALSE,
+                                                                                                   #visa_dataetiketter = TRUE,
+                                                                                                   returnera_data_rmarkdown = TRUE)
+  }, hoppa_over = hoppa_over_felhantering)
+  
   # Förädlingsvärde
   source(here("skript","diag_fek_bransch_fran_2022_korrekt.R"), encoding="UTF-8")
   gg_foradlingsvarde_bransch <- funktion_upprepa_forsok_om_fel( function() {diag_fek_bransch_lan_scb(skriv_diagramfil = spara_figurer,

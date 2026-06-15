@@ -157,6 +157,33 @@ Antal aktiva företag
 gg_aktiva_foretag[[1]]
 ```
 
+Antal nyetablerade företag
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_nyetablerade_foretag[[1]]
+```
+
+Antal nedlagda företag
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_nedlagda_foretag[[1]]
+```
+
+Alternativ med alla tre i samma diagram
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_aktiva_foretag[[2]]
+```
+
+Uppdelat på storleksklass istället
+
+Aktiva företag
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_aktiva_foretag_storleksklass[[1]]
+```
+
+
 ## Branscher - omsättning och sysselsatta
 Bubbeldiagrammet?
 
