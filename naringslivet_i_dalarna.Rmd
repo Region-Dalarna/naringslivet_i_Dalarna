@@ -30,6 +30,7 @@ p_load(tidyverse,
 # Funktioner som behövs (hämtas från Git-Hub)
 source('https://raw.githubusercontent.com/Region-Dalarna/funktioner/main/func_SkapaDiagram.R')
 source('https://raw.githubusercontent.com/Region-Dalarna/funktioner/main/func_API.R')
+source("https://raw.githubusercontent.com/Region-Dalarna/funktioner/main/func_pxweb2.R")
 
 # För att information från Tidyverse inte skall visas
 options(dplyr.summarise.inform = FALSE)
@@ -120,6 +121,101 @@ Ge en kort sammanfattning inledningsvis i respektive avsnitt?
 
 # Dalarnas näringsliv och företagande
 Några övergripande basfakta om Dalarnas näringsliv och företag
+
+```{r, include = FALSE}
+  
+# Hämtar data
+foretagare_df <- pxweb2_hamta_data(
+  tabell = "TAB3205",
+  query = list(
+    Region = hamtakommuner(tamedlan = FALSE, tamedriket = FALSE),
+    Yrkesstallning = "*",
+    Kon = "totalt",
+    Alder = "15-74",
+    Fodelseregion = "totalt",
+    ContentsCode = "000002XS",
+    Tid = "9999"
+  ))
+
+# Funktion som beräknar andel företagaer
+andel_foretagare <- function(data, group_vars) {
+  
+  data %>%
+    # 1. keep relevant categories
+    filter(yrkesställning %in% c("företagare i AB", "egenföretagare", "totalt")) %>%
+    
+    # 2. aggregate within groups + yrkesställning
+    group_by(across(all_of(group_vars)), yrkesställning) %>%
+    summarise(value = sum(value, na.rm = TRUE), .groups = "drop") %>%
+    
+    # 3. reshape to wide
+    pivot_wider(
+      names_from = yrkesställning,
+      values_from = value,
+      values_fill = 0
+    ) %>%
+    
+    # 4. compute share
+    mutate(
+      andel_foretagare = round((`företagare i AB` + egenföretagare) / totalt*100,1)
+    )
+  
+}
+
+# Beräknar andel företagare
+andel_foretagare_kommun_df <- andel_foretagare(foretagare_df, c("år","region_kod","region","ålder")) %>% 
+  mutate(region_kod = as.integer(region_kod),
+         grupp = case_when(andel_foretagare < 5 ~ "0-5",
+                           andel_foretagare >= 5 & andel_foretagare < 10 ~ "5-10",
+                           andel_foretagare >= 10 & andel_foretagare < 15 ~ "10-15",
+                           andel_foretagare >= 15 ~ "15+"),
+         andel_foretagare = round(andel_foretagare))
+
+mapp_scbadmgranser <- "G:/Samhällsanalys/GIS/grundkartor/KommunerDalarna/"
+#G:\Samhällsanalys\GIS\grundkartor\Adm gränser med kustgränser
+filnamn_kommuner <- "Dalarna_kommuner.shp"
+
+sokvag_kommuner_sv <- paste0(mapp_scbadmgranser, filnamn_kommuner)
+
+kommuner_sv <- st_read(sokvag_kommuner_sv,options = "ENCODING=WINDOWS-1252")
+
+# lägg ihop kommunpolygonerna med brp per kommun-statistiken
+andel_foretagare_kommun_gis <- left_join(kommuner_sv, andel_foretagare_kommun_df %>% mutate(region_kod = as.integer(region_kod)), by = c("KOMMUNKOD" = "region_kod")) 
+andel_foretagare_kommun_gis$grupp <- factor(andel_foretagare_kommun_gis$grupp,levels=c("0-5","5-10","10-15","15+")) 
+
+karta_foretagare <- ggplot(andel_foretagare_kommun_gis,
+                aes(fill = grupp,
+                    label = KOMMUNNAMN,tooltip=paste("Kommun:",KOMMUNNAMN,"<br>","Andel: ",andel_foretagare,"%"))) +
+  geom_sf_interactive() +
+  scale_fill_manual(values = colorRampPalette(c("#93cec1", "#0e5a4c"))(4)) +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
+        panel.background = element_rect(fill = "white", colour = 'white'),
+        plot.caption = element_text(hjust = 0),
+        legend.position = "right") +
+  labs(title = paste0("Andel företagare av totalt antal sysselsatta (",unique(andel_foretagare_kommun_gis$ålder),") i Dalarna år ",unique(andel_foretagare_kommun_gis$år)),
+       subtitle = "",
+       yaxis = "",
+       fill = "Andel företagare (%)",
+       caption = "Källa: SCB (BAS)\nBearbetning: Samhällsanalys, Region Dalarna.\nDiagramförklaring: Avser bostadens belägenhet. För ytterligare information, rör muspekaren över kartan.") 
+
+karta_foretagare <- girafe(ggobj=karta_foretagare)
+
+karta_foretagare <-girafe_options(karta_foretagare,opts_tooltip(opacity = 1,css = "padding:4pt;font-size:0.7rem;color:black;background-color:rgba(255,255,255,0.7);border-radius:5pt;font-weight: 600",
+                                          offx = 25,
+                                          use_cursor_pos = TRUE))
+
+  
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=10, fig.width=10, fig.alt = "Karta över Dalarna där olika nivåer av arbetslöshet visas med olika nyanser av grönt"}
+karta_foretagare
+
+```
+
+Generellt är större andel män än kvinnor företagare, vilket även gäller inrikes födda jämfört med utrikes födda.
 
 Senaste mättillfället samt för 10 och 20 år sedan?
 

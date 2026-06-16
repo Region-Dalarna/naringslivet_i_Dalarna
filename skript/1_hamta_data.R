@@ -10,7 +10,7 @@
 
 hoppa_over_felhantering = FALSE
 
-uppdatera_data = TRUE
+uppdatera_data = FALSE
 spara_figurer = FALSE
 
 if (!require("pacman")) install.packages("pacman")
