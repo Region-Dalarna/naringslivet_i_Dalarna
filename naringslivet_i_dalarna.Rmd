@@ -236,6 +236,16 @@ Total import och export?
 
 Förändring i näringslivets sammansättning de senaste x åren?
 
+Från avsnitt 2.2 i kompetensförsörjningsrapporten
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_forv_90$forvarvsarbetande_90_totalt_Dalarna
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_forv_90$forvarvsarbetande_90_forandring_Dalarna
+```
+
 LA- och FA-regioner?
 
 ## Näringslivets omfattning, utveckling och geografisk fördelning

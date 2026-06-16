@@ -10,7 +10,7 @@
 
 hoppa_over_felhantering = FALSE
 
-uppdatera_data = FALSE
+uppdatera_data = TRUE
 spara_figurer = FALSE
 
 if (!require("pacman")) install.packages("pacman")
@@ -29,6 +29,19 @@ if(uppdatera_data == TRUE){
   
   cat("Hämtning av data påbörjad\n")
   start_time <- Sys.time()
+  
+  # Förvärvsarbetande från 1990 till senaste år. Både antal och förändring (från första till sista)
+  source("https://raw.githubusercontent.com/Region-Dalarna/diagram/main/diagram_forvarvsarbetande_90_senastear_SCB.R")
+  gg_forv_90 <- funktion_upprepa_forsok_om_fel( function() {
+    diagram_forvarvsarbetande_90(output_mapp_figur = output_mapp_figur,
+                                 spara_figur = spara_figurer,
+                                 diag_antal = TRUE,
+                                 diag_forandring = TRUE,
+                                 returnera_figur = TRUE,
+                                 returnera_data = TRUE,
+                                 vald_farg = diagramfarger("rus_sex"))
+  }, hoppa_over = hoppa_over_felhantering)
+  
   
   # Antal aktiva, nystartade och nedlagda företag uppdelat på bransch (Tillväxtanalys)
   source(here("skript","diag_aktiva_foretag_mm_tva.R"), encoding="UTF-8")
