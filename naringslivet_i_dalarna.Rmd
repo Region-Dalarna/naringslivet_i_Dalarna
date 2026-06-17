@@ -217,16 +217,15 @@ karta_foretagare <-girafe_options(karta_foretagare,opts_tooltip(opacity = 1,css 
 ```
 
 
-År `r res_andel_foretagare$år` hade `r res_andel_foretagare$highest_grupp` den högsta andelen företagare (`r res_andel_foretagare$highest_value` procent), medan
-`r res_andel_foretagare$lowest_grupp` hade den lägsta andelen (`r res_andel_foretagare$lowest_value` procent).
-
+År `r res_andel_foretagare$år` hade `r res_andel_foretagare$highest_grupp` den högsta andelen företagare bland de sysselsatta i Dalarnas kommuner (`r res_andel_foretagare$highest_value` procent), medan
+`r res_andel_foretagare$lowest_grupp` hade den lägsta andelen (`r res_andel_foretagare$lowest_value` procent). Generellt är andelen företagare högre i de mer glesbefolkade kommunerna i norra Dalarna.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=10, fig.width=10, fig.alt = "Karta över Dalarna där olika nivåer av arbetslöshet visas med olika nyanser av grönt"}
 karta_foretagare
 
 ```
 
-Generellt är större andel män än kvinnor företagare, vilket även gäller inrikes födda jämfört med utrikes födda.
+Den typiske företagaren är en inrikes född man, medan klart färre andel utrikes födda kvinnor driver egna företag.
 
 Senaste mättillfället samt för 10 och 20 år sedan?
 
@@ -249,6 +248,11 @@ Förändring i näringslivets sammansättning de senaste x åren?
 
 Från avsnitt 2.2 i kompetensförsörjningsrapporten
 
+Näringslivets struktur har förändrats relativt mycket de senaste dryga 30 åren. I början av 1990 talet var "`r tolower(storsta_bransch_varde_forsta_ar$highest_grupp)`" den klart största branschen i Dalarna med mer än 30 000 sysselsatta (se det första diagrammet nedan). Sedan dess har antalet sysselsatta inom branschen minskat med drygt `r format(abs(plyr::round_any(bransch_storsta_forandring_varde$lowest_value_num, 1000)),big.mark = " ")` personer (se det andra diagrammet nedan). 
+
+År `r storsta_bransch_varde_senaste_ar$år` är istället "`r tolower(storsta_bransch_varde_senaste_ar$highest_grupp)`" den största branschgruppen, med knappt `r format(abs(plyr::round_any(storsta_bransch_varde_senaste_ar$highest_value_num, 1000)), big.mark = " ")` sysselsatta i länet. En annan bransch där sysselsättningen ökat avsevärt är "`r tolower(bransch_storsta_forandring_varde$highest_grupp)`", med ungefär `r format(abs(plyr::round_any(bransch_storsta_forandring_varde$highest_value_num, 100)))` fler sysselsatta år `r storsta_bransch_varde_senaste_ar$år` jämfört med 1990.
+
+
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_forv_90$forvarvsarbetande_90_totalt_Dalarna
 ```
@@ -270,7 +274,7 @@ gg_storsta_arbetsgivare$storsta_arbetsgivare
 
 Antal aktiva företag
 
-Flest antal aktiva företag i Dalarna fanns år `r antal_aktiva_foretag_bransch_varde$år` inom branschgruppen `r tolower(antal_aktiva_foretag_bransch_varde$highest_grupp)`, med  `r antal_aktiva_foretag_bransch_varde$highest_value` företag. Detta hör sannolikt samman med att Sverige (och Dalarna) idag domineras av företag inom tjänstesektorn, där företagstjänster (exempelvis konsultverksamhet, städ etc.) ingår och är en stor bransch. Även inom byggverksamhet finns många aktiva företag. 
+Flest antal företag i Dalarna fanns år `r antal_aktiva_foretag_bransch_varde$år` inom branschgruppen `r tolower(antal_aktiva_foretag_bransch_varde$highest_grupp)`, med  `r antal_aktiva_foretag_bransch_varde$highest_value` företag. Här ingår exempelvis företag som sysslar med konsultverksamhet, städ etc. Tjänster som tidigare ofta sköttes inom företagen, men idag outsourcas. Även inom byggverksamhet finns många företag. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_aktiva_foretag[[1]]

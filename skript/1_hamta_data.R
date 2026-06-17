@@ -10,7 +10,7 @@
 
 hoppa_over_felhantering = FALSE
 
-uppdatera_data = TRUE
+uppdatera_data = FALSE
 spara_figurer = FALSE
 
 if (!require("pacman")) install.packages("pacman")
@@ -64,7 +64,7 @@ get_extremes_by_year <- function(data, value_var, region_var, year_var,
       lowest_value_num  = lowest_value,
       highest_value = formatter(highest_value),
       lowest_value  = formatter(lowest_value)
-    ) %>% select(-highest_value_num, -lowest_value_num)
+    )
 }
 
 
@@ -90,6 +90,15 @@ if(uppdatera_data == TRUE){
                                  returnera_data = TRUE,
                                  vald_farg = diagramfarger("rus_sex"))
   }, hoppa_over = hoppa_over_felhantering)
+  
+  storsta_bransch_varde_senaste_ar <- get_extremes_by_year(forvarvsarbetande_90_senastear, antal, Näringsgren, år,accuracy = 1) %>% 
+    slice_max(år, n = 1)
+  
+  storsta_bransch_varde_forsta_ar <- get_extremes_by_year(forvarvsarbetande_90_senastear, antal, Näringsgren, år,accuracy = 1) %>% 
+    slice_min(år, n = 1)
+  
+  bransch_storsta_forandring_varde <- get_extremes_by_year(forvarvsarbetande_90_forandring, skillnad, Näringsgren, år,accuracy = 1) %>% 
+    slice_max(år, n = 1)
   
   
   # Antal aktiva, nystartade och nedlagda företag uppdelat på bransch (Tillväxtanalys)
