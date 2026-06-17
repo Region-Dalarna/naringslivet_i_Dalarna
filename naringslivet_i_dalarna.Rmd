@@ -157,7 +157,7 @@ andel_foretagare <- function(data, group_vars) {
     
     # 4. compute share
     mutate(
-      andel_foretagare = round((`företagare i AB` + egenföretagare) / totalt*100,1)
+      andel_foretagare = round(((`företagare i AB` + egenföretagare) / totalt)*100,1)
     )
   
 }
@@ -168,8 +168,14 @@ andel_foretagare_kommun_df <- andel_foretagare(foretagare_df, c("år","region_ko
          grupp = case_when(andel_foretagare < 5 ~ "0-5",
                            andel_foretagare >= 5 & andel_foretagare < 10 ~ "5-10",
                            andel_foretagare >= 10 & andel_foretagare < 15 ~ "10-15",
-                           andel_foretagare >= 15 ~ "15+"),
-         andel_foretagare = round(andel_foretagare))
+                           andel_foretagare >= 15 ~ "15+"))
+
+res <- get_extremes_by_year(andel_foretagare_kommun_df, andel_foretagare, region, år)
+
+
+res_andel_foretagare <- res %>%
+  slice_max(år, n = 1)
+
 
 mapp_scbadmgranser <- "G:/Samhällsanalys/GIS/grundkartor/KommunerDalarna/"
 #G:\Samhällsanalys\GIS\grundkartor\Adm gränser med kustgränser
@@ -209,6 +215,11 @@ karta_foretagare <-girafe_options(karta_foretagare,opts_tooltip(opacity = 1,css 
 
   
 ```
+
+
+År `r res_andel_foretagare$år` hade `r res_andel_foretagare$highest_grupp` den högsta andelen företagare (`r res_andel_foretagare$highest_value` procent), medan
+`r res_andel_foretagare$lowest_grupp` hade den lägsta andelen (`r res_andel_foretagare$lowest_value` procent).
+
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=10, fig.width=10, fig.alt = "Karta över Dalarna där olika nivåer av arbetslöshet visas med olika nyanser av grönt"}
 karta_foretagare

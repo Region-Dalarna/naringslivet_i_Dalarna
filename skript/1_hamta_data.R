@@ -10,7 +10,7 @@
 
 hoppa_over_felhantering = FALSE
 
-uppdatera_data = TRUE
+uppdatera_data = FALSE
 spara_figurer = FALSE
 
 if (!require("pacman")) install.packages("pacman")
@@ -20,6 +20,55 @@ p_load(tidyverse,
 
 mapp_environment_fil = "g:/skript/projekt/environments/" # OBS: Får ej ändras
 repo_namn = "naringslivet_i_Dalarna" # OBS: Får ej ändras
+
+# Funktion som automatiskt väljer variabel med högst respektive lägst värde
+
+
+
+library(dplyr)
+library(scales)
+
+get_extremes_by_year <- function(data, value_var, region_var, year_var,
+                                 accuracy = 0.1,
+                                 decimal_mark = ",") {
+  
+  formatter <- label_number(
+    accuracy = accuracy,
+    decimal.mark = decimal_mark
+  )
+  
+  highest <- data %>%
+    group_by({{ year_var }}) %>%
+    slice_max({{ value_var }}, n = 1, with_ties = FALSE) %>%
+    ungroup() %>%
+    transmute(
+      {{ year_var }},
+      highest_grupp = {{ region_var }},
+      highest_value = {{ value_var }}
+    )
+  
+  lowest <- data %>%
+    group_by({{ year_var }}) %>%
+    slice_min({{ value_var }}, n = 1, with_ties = FALSE) %>%
+    ungroup() %>%
+    transmute(
+      {{ year_var }},
+      lowest_grupp = {{ region_var }},
+      lowest_value = {{ value_var }}
+    ) 
+  
+  highest %>%
+    left_join(lowest, by = as_label(enquo(year_var))) %>%
+    mutate(
+      highest_value_num = highest_value,
+      lowest_value_num  = lowest_value,
+      highest_value = formatter(highest_value),
+      lowest_value  = formatter(lowest_value)
+    ) %>% select(-highest_value_num, -lowest_value_num)
+}
+
+
+
 
 if(uppdatera_data == TRUE){
   
@@ -52,12 +101,18 @@ if(uppdatera_data == TRUE){
                                                                                                    returnera_data_rmarkdown = TRUE)
   }, hoppa_over = hoppa_over_felhantering)
   
+  antal_aktiva_foretag_bransch_varde <- get_extremes_by_year(antal_aktiva_foretag_df, varde, bransch, år,accuracy = 1) %>% 
+    slice_max(år, n = 1)
+  
   gg_nyetablerade_foretag <- funktion_upprepa_forsok_om_fel( function() {diag_aktiva_foretag_bransch_lan(cont_klartext = "Antal nyetablerade företag",
                                                                                                     skriv_diagramfil = spara_figurer,
                                                                                                     diagram_capt = "Källa: Tillväxtanalys. Bearbetning: Samhällsanalys, Region Dalarna.\nMed nyetablerade företag menas de företag som är helt nybildade eller har återupptagits efter att ha varit vilande i minst två år.",
                                                                                                     output_mapp = output_mapp_figur,
                                                                                                     returnera_data_rmarkdown = TRUE)
   }, hoppa_over = hoppa_over_felhantering)
+  
+  antal_nyetablerade_foretag_bransch_varde <- get_extremes_by_year(antal_nyetablerade_foretag_df, varde, bransch, år,accuracy = 1) %>% 
+    slice_max(år, n = 1)
 
   gg_nedlagda_foretag <- funktion_upprepa_forsok_om_fel( function() {diag_aktiva_foretag_bransch_lan(cont_klartext = "Antal nedlagda företag",
                                                                                                          skriv_diagramfil = spara_figurer,
@@ -66,6 +121,9 @@ if(uppdatera_data == TRUE){
                                                                                                          returnera_data_rmarkdown = TRUE)
   }, hoppa_over = hoppa_over_felhantering)
   
+  antal_nedlagda_foretag_bransch_varde <- get_extremes_by_year(antal_nedlagda_foretag_df, varde, bransch, år,accuracy = 1) %>%
+    slice_max(år, n = 1)
+
   # Motsvarande fast uppdelat på storleksklass istället för bransch
   source(here("skript","diag_aktiva_foretag_mm_storleksklass_tva.R"), encoding="UTF-8")
   gg_aktiva_foretag_storleksklass <- funktion_upprepa_forsok_om_fel( function() {diag_aktiva_foretag_storleksklass_lan(cont_klartext = "Antal aktiva företag",
@@ -76,12 +134,18 @@ if(uppdatera_data == TRUE){
                                                                                                    returnera_data_rmarkdown = TRUE)
   }, hoppa_over = hoppa_over_felhantering)
   
+  antal_aktiva_foretag_storleksklass_varde <- get_extremes_by_year(antal_aktiva_foretagstorleksklass_df, varde, storleksklass, år,accuracy = 1) %>% 
+    slice_max(år, n = 1)
+  
   # Förädlingsvärde
   source(here("skript","diag_fek_bransch_fran_2022_korrekt.R"), encoding="UTF-8")
   gg_foradlingsvarde_bransch <- funktion_upprepa_forsok_om_fel( function() {diag_fek_bransch_lan_scb(skriv_diagramfil = spara_figurer,
                                                                                                      output_mapp = output_mapp_figur,
                                                                                                      returnera_data_rmarkdown = TRUE)
   }, hoppa_over = hoppa_over_felhantering)
+  
+  foradlingsvarde_varde <- get_extremes_by_year(foradlingsvarde_df, varde, Branschgrupp, år,accuracy = 1) %>% 
+    slice_max(år, n = 1)
   
   # Nettoomsättning
   source(here("skript","diag_fek_bransch_fran_2022_korrekt.R"), encoding="UTF-8")
@@ -91,12 +155,18 @@ if(uppdatera_data == TRUE){
                                                                                                      returnera_data_rmarkdown = TRUE)
   }, hoppa_over = hoppa_over_felhantering)
   
+  nettoomsattning_varde <- get_extremes_by_year(nettoomsattning_df, varde, Branschgrupp, år,accuracy = 1) %>% 
+    slice_max(år, n = 1)
+  
   source(here("skript","diag_fek_bransch_fran_2022_korrekt.R"), encoding="UTF-8")
   gg_antal_anstallda_bransch <- funktion_upprepa_forsok_om_fel( function() {diag_fek_bransch_lan_scb(cont_klartext = "Antal anställda",
                                                                                                      skriv_diagramfil = spara_figurer,
                                                                                                      output_mapp = output_mapp_figur,
                                                                                                      returnera_data_rmarkdown = TRUE)
   }, hoppa_over = hoppa_over_felhantering)
+  
+  antal_anstallda_varde <- get_extremes_by_year(antal_anstallda_df, varde, Branschgrupp, år,accuracy = 1) %>% 
+    slice_max(år, n = 1)
   
   # Produktivitet (BRP/Sysselsatt) - 2 diagram
   source("https://raw.githubusercontent.com/Region-Dalarna/uppfoljning_dalastrategin/refs/heads/main/Skript/diagram_BRP.R")
@@ -123,6 +193,12 @@ if(uppdatera_data == TRUE){
                                                                                                                   returnera_data_rmarkdown = TRUE)
   }, hoppa_over = hoppa_over_felhantering)
   
+  utlandskt_agande_anstallda_bransch_varde <- get_extremes_by_year(antal_anstallda_utlandskt_agande_bransch_df, varde, Branschgrupp, år,accuracy = 1) %>% 
+    slice_max(år, n = 1)
+  
+  utlandskt_agande_anstallda_land_varde <- get_extremes_by_year(antal_anstallda_utlandskt_agande_land_df, varde, Land, år,accuracy = 1) %>% 
+    slice_max(år, n = 1)
+  
   # Utländskt ägande - antal arbetsställen
   source(here("skript","diag_utlanskt_agande_anstallda_arbetsstallen.R"), encoding="UTF-8")
   gg_utlandskt_agande_arbetsstallen <- funktion_upprepa_forsok_om_fel( function() {diag_utlandskt_agande_bransch_land(cont_klartext = "Antal arbetsställen",
@@ -130,6 +206,12 @@ if(uppdatera_data == TRUE){
                                                                                                                       output_mapp = output_mapp_figur,
                                                                                                                       returnera_data_rmarkdown = TRUE)
   }, hoppa_over = hoppa_over_felhantering)
+  
+  utlandskt_agande_arbetsstallen_bransch_varde <- get_extremes_by_year(antal_arbetsstallen_utlandskt_agande_bransch_df, varde, Branschgrupp, år,accuracy = 1) %>% 
+    slice_max(år, n = 1)
+  
+  utlandskt_agande_arbetsstallen_land_varde <- get_extremes_by_year(antal_arbetsstallen_utlandskt_agande_land_df, varde, Land, år,accuracy = 1) %>% 
+    slice_max(år, n = 1)
   
   # Sparar global environment i R. Detta för att man skall slippa hämta data varje gång
   save.image(file = glue("{mapp_environment_fil}{repo_namn}.RData"))
