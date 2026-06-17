@@ -270,6 +270,8 @@ gg_storsta_arbetsgivare$storsta_arbetsgivare
 
 Antal aktiva företag
 
+Flest antal aktiva företag i Dalarna fanns år `r antal_aktiva_foretag_bransch_varde$år` inom branschgruppen `r tolower(antal_aktiva_foretag_bransch_varde$highest_grupp)`, med  `r antal_aktiva_foretag_bransch_varde$highest_value` företag. Detta hör sannolikt samman med att Sverige (och Dalarna) idag domineras av företag inom tjänstesektorn, där företagstjänster (exempelvis konsultverksamhet, städ etc.) ingår och är en stor bransch. Även inom byggverksamhet finns många aktiva företag. 
+
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_aktiva_foretag[[1]]
 ```
