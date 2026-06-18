@@ -241,6 +241,13 @@ source(here("skript","storsta_arbetsgivare_tabell.R"), encoding="UTF-8")
 gg_storsta_arbetsgivare <- funktion_upprepa_forsok_om_fel( function() {diag_storsta_arbetsgivare(returnera_data = TRUE)
 }, hoppa_over = hoppa_over_felhantering)
 
+storsta_arbetsgivare_privat_varde <- get_extremes_by_year(storsta_arbetsgivare_df, `Antal anställda (privat)`, `Arbetsgivare (privat)`, år,accuracy = 1) %>% 
+  slice_max(år, n = 1)
+
+storsta_arbetsgivare_offentlig_varde <- get_extremes_by_year(storsta_arbetsgivare_df, `Antal anställda (offentlig)`, `Arbetsgivare (offentlig)`, år,accuracy = 1) %>% 
+  slice_max(år, n = 1)
+
+
 
 
 

@@ -250,7 +250,7 @@ Från avsnitt 2.2 i kompetensförsörjningsrapporten
 
 Näringslivets struktur har förändrats relativt mycket de senaste dryga 30 åren. I början av 1990 talet var "`r tolower(storsta_bransch_varde_forsta_ar$highest_grupp)`" den klart största branschen i Dalarna med mer än 30 000 sysselsatta (se det första diagrammet nedan). Sedan dess har antalet sysselsatta inom branschen minskat med drygt `r format(abs(plyr::round_any(bransch_storsta_forandring_varde$lowest_value_num, 1000)),big.mark = " ")` personer (se det andra diagrammet nedan). 
 
-År `r storsta_bransch_varde_senaste_ar$år` är istället "`r tolower(storsta_bransch_varde_senaste_ar$highest_grupp)`" den största branschgruppen, med knappt `r format(abs(plyr::round_any(storsta_bransch_varde_senaste_ar$highest_value_num, 1000)), big.mark = " ")` sysselsatta i länet. En annan bransch där sysselsättningen ökat avsevärt är "`r tolower(bransch_storsta_forandring_varde$highest_grupp)`", med ungefär `r format(abs(plyr::round_any(bransch_storsta_forandring_varde$highest_value_num, 100)))` fler sysselsatta år `r storsta_bransch_varde_senaste_ar$år` jämfört med 1990.
+År `r storsta_bransch_varde_senaste_ar$år` var "`r tolower(storsta_bransch_varde_senaste_ar$highest_grupp)`" den största branschgruppen, med knappt `r format(abs(plyr::round_any(storsta_bransch_varde_senaste_ar$highest_value_num, 1000)), big.mark = " ")` sysselsatta i länet. Detta var något fler än 1990. En bransch där sysselsättningen ökat avsevärt är "`r tolower(bransch_storsta_forandring_varde$highest_grupp)`", med ungefär `r format(abs(plyr::round_any(bransch_storsta_forandring_varde$highest_value_num, 100)))` fler sysselsatta år `r storsta_bransch_varde_senaste_ar$år` jämfört med 1990.
 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
@@ -266,7 +266,7 @@ LA- och FA-regioner?
 ## Näringslivets omfattning, utveckling och geografisk fördelning
 Ett antal diagram som ger en bild av näringslivets sammansättning i Dalarna.
 
-Största arbetsgivare i länet och per kommun.
+Dalarnas största privata arbetsgivare är `r storsta_arbetsgivare_privat_varde$highest_grupp` i Ludvika som år `r storsta_arbetsgivare_privat_varde$år` hade drygt `r format(abs(plyr::round_any(storsta_arbetsgivare_privat_varde$highest_value_num, 100)), big.mark = " ")` anställda. Länets största offentliga arbetsgivare är `r storsta_arbetsgivare_offentlig_varde$highest_grupp` med ungefär `r format(abs(plyr::round_any(storsta_arbetsgivare_offentlig_varde$highest_value_num, 100)), big.mark = " ")` anställda. I samtliga av Dalarnas kommuner, förutom Ludvika, återfinns den största arbetsgivaren inom offentlig verksamhet.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_storsta_arbetsgivare$storsta_arbetsgivare
