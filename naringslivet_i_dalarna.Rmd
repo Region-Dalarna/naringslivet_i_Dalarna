@@ -170,10 +170,7 @@ andel_foretagare_kommun_df <- andel_foretagare(foretagare_df, c("år","region_ko
                            andel_foretagare >= 10 & andel_foretagare < 15 ~ "10-15",
                            andel_foretagare >= 15 ~ "15+"))
 
-res <- get_extremes_by_year(andel_foretagare_kommun_df, andel_foretagare, region, år)
-
-
-res_andel_foretagare <- res %>%
+res_andel_foretagare <- get_extremes_by_year(andel_foretagare_kommun_df, andel_foretagare, region, år) %>%
   slice_max(år, n = 1)
 
 
@@ -272,9 +269,9 @@ Dalarnas största privata arbetsgivare är `r storsta_arbetsgivare_privat_varde$
 gg_storsta_arbetsgivare$storsta_arbetsgivare
 ```
 
-Antal aktiva företag
+Antal företag
 
-Flest antal företag i Dalarna fanns år `r antal_aktiva_foretag_bransch_varde$år` inom branschgruppen `r tolower(antal_aktiva_foretag_bransch_varde$highest_grupp)`, med  `r antal_aktiva_foretag_bransch_varde$highest_value` företag. Här ingår exempelvis företag som sysslar med konsultverksamhet, städ etc. Tjänster som tidigare ofta sköttes inom företagen, men idag outsourcas. Även inom byggverksamhet finns många företag. 
+Den vanligaste branschen bland Dalarnas företag var år `r antal_aktiva_foretag_bransch_varde$år`  `r tolower(antal_aktiva_foretag_bransch_varde$highest_grupp)`, med drygt `r format(plyr::round_any(antal_aktiva_foretag_bransch_varde$highest_value_num, 100), big.mark = " ")` aktiva företag. Här ingår exempelvis företag som sysslar med konsultverksamhet eller städ, tjänster som tidigare ofta sköttes inom företag men idag outsourcas i större utsräckning. Detta kan vara en av orsakerna till att antalet anställda inom tillverkning och utvinning har minskat påtagligt sedan 1990-talet (se föregående avsnitt). I Dalarna finns även många företag som sysslar med byggverksamhet av olika slag.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_aktiva_foretag[[1]]
@@ -301,6 +298,8 @@ gg_aktiva_foretag[[2]]
 Uppdelat på storleksklass istället
 
 Aktiva företag
+
+Om man istället delar upp antalet företag i olika storleksklasser blir det tydligt att de allra flesta företag är små. Av länets ungefär `r format(plyr::round_any(sum(antal_aktiva_foretagstorleksklass_df$varde),100),big.mark = " ")` företag har en majoritet (drygt `r format(abs(plyr::round_any(antal_aktiva_foretag_storleksklass_varde$highest_value_num, 1000)), big.mark = " ")`) inga anställda. Bara ungefär `r format(abs(plyr::round_any(antal_aktiva_foretag_storleksklass_varde$lowest_value_num, 1000)), big.mark = " ")` företag har 10 eller fler anställda.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_aktiva_foretag_storleksklass[[1]]
@@ -346,6 +345,8 @@ definition summerar regionernas BRP upp till landets BNP.
 ## Tillväxt
 Vad kan vi säga om utvecklingen när det gäller ekonomisk tillväxt?
 Den ekonomiska tillväxten mäts som förändringen i Bruttonationalprodukten (BNP) mellan två tidsperioder. Det ekonomiska välståndet definieras som nivån på BNP vid en viss tidpunkt.
+
+
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_brp_invanare[[1]]

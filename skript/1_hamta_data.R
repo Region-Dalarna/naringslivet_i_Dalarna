@@ -10,64 +10,93 @@
 
 hoppa_over_felhantering = FALSE
 
-uppdatera_data = FALSE
+uppdatera_data = TRUE
 spara_figurer = FALSE
 
 if (!require("pacman")) install.packages("pacman")
 p_load(tidyverse,
        here,
-       glue)
+       glue,
+       scales)
 
 mapp_environment_fil = "g:/skript/projekt/environments/" # OBS: Får ej ändras
 repo_namn = "naringslivet_i_Dalarna" # OBS: Får ej ändras
+
+source("G:/skript/jon/Funktioner/func_markdown.R")
 
 # Funktion som automatiskt väljer variabel med högst respektive lägst värde
 
 
 
-library(dplyr)
-library(scales)
-
-get_extremes_by_year <- function(data, value_var, region_var, year_var,
-                                 accuracy = 0.1,
-                                 decimal_mark = ",") {
-  
-  formatter <- label_number(
-    accuracy = accuracy,
-    decimal.mark = decimal_mark
-  )
-  
-  highest <- data %>%
-    group_by({{ year_var }}) %>%
-    slice_max({{ value_var }}, n = 1, with_ties = FALSE) %>%
-    ungroup() %>%
-    transmute(
-      {{ year_var }},
-      highest_grupp = {{ region_var }},
-      highest_value = {{ value_var }}
-    )
-  
-  lowest <- data %>%
-    group_by({{ year_var }}) %>%
-    slice_min({{ value_var }}, n = 1, with_ties = FALSE) %>%
-    ungroup() %>%
-    transmute(
-      {{ year_var }},
-      lowest_grupp = {{ region_var }},
-      lowest_value = {{ value_var }}
-    ) 
-  
-  highest %>%
-    left_join(lowest, by = as_label(enquo(year_var))) %>%
-    mutate(
-      highest_value_num = highest_value,
-      lowest_value_num  = lowest_value,
-      highest_value = formatter(highest_value),
-      lowest_value  = formatter(lowest_value)
-    )
-}
+# library(dplyr)
+# library(scales)
 
 
+
+# get_extremes_by_year <- function(data, value_var, region_var, year_var,
+#                                  specific_region = NA_character_,
+#                                  accuracy = 0.1,
+#                                  decimal_mark = ",") {
+#   
+#   formatter <- label_number(
+#     accuracy = accuracy,
+#     decimal.mark = decimal_mark
+#   )
+#   
+#   year_name <- rlang::as_label(enquo(year_var))
+#   
+#   highest <- data %>%
+#     group_by({{ year_var }}) %>%
+#     slice_max({{ value_var }}, n = 1, with_ties = FALSE) %>%
+#     ungroup() %>%
+#     transmute(
+#       {{ year_var }},
+#       highest_grupp = {{ region_var }},
+#       highest_value = {{ value_var }}
+#     )
+#   
+#   lowest <- data %>%
+#     group_by({{ year_var }}) %>%
+#     slice_min({{ value_var }}, n = 1, with_ties = FALSE) %>%
+#     ungroup() %>%
+#     transmute(
+#       {{ year_var }},
+#       lowest_grupp = {{ region_var }},
+#       lowest_value = {{ value_var }}
+#     )
+#   
+#   result <- highest %>%
+#     left_join(lowest, by = year_name) %>%
+#     mutate(
+#       highest_value_num = highest_value,
+#       lowest_value_num  = lowest_value,
+#       highest_value = formatter(highest_value),
+#       lowest_value  = formatter(lowest_value)
+#     )
+#   
+#   if (!is.na(specific_region)) {
+#     
+#     specific <- data %>%
+#       filter({{ region_var }} == specific_region) %>%
+#       group_by({{ year_var }}) %>%
+#       slice_max({{ value_var }}, n = 1, with_ties = FALSE) %>%
+#       ungroup() %>%
+#       transmute(
+#         {{ year_var }},
+#         specific_grupp = {{ region_var }},
+#         specific_value = {{ value_var }}
+#       )
+#     
+#     result <- result %>%
+#       left_join(specific, by = year_name) %>%
+#       mutate(
+#         specific_value_num = specific_value,
+#         specific_value = formatter(specific_value)
+#       )
+#   }
+#   
+#   result
+# }
 
 
 if(uppdatera_data == TRUE){
@@ -193,6 +222,9 @@ if(uppdatera_data == TRUE){
                                                                                        returnera_data_rmarkdown  = TRUE,
                                                                                        skriv_diagramfil = spara_figurer)
   }, hoppa_over = hoppa_over_felhantering)
+  
+  brp_per_invanare_varde <- get_extremes_by_year(data = brp_lan_df, value_var =  `BRP per invånare, löpande priser, tkr`, region_var = region, year_var = år,accuracy = 1,specific_region = "Dalarna",) %>% 
+    slice_max(år, n = 1) 
  
   # Utländskt ägande - antal anställda
   source(here("skript","diag_utlanskt_agande_anstallda_arbetsstallen.R"), encoding="UTF-8")
