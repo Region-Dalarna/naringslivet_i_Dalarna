@@ -271,7 +271,7 @@ gg_storsta_arbetsgivare$storsta_arbetsgivare
 
 Antal företag
 
-Den vanligaste branschen bland Dalarnas företag var år `r antal_aktiva_foretag_bransch_varde$år`  `r tolower(antal_aktiva_foretag_bransch_varde$highest_grupp)`, med drygt `r format(plyr::round_any(antal_aktiva_foretag_bransch_varde$highest_value_num, 100), big.mark = " ")` aktiva företag. Här ingår exempelvis företag som sysslar med konsultverksamhet eller städ, tjänster som tidigare ofta sköttes inom företag men idag outsourcas i större utsräckning. Detta kan vara en av orsakerna till att antalet anställda inom tillverkning och utvinning har minskat påtagligt sedan 1990-talet (se föregående avsnitt). I Dalarna finns även många företag som sysslar med byggverksamhet av olika slag.
+Den vanligaste branschen bland Dalarnas företag var år `r antal_aktiva_foretag_bransch_varde$år`  `r tolower(antal_aktiva_foretag_bransch_varde$highest_grupp)`, med drygt `r format(plyr::round_any(antal_aktiva_foretag_bransch_varde$highest_value_num, 100), big.mark = " ")` aktiva företag. Här ingår exempelvis företag som sysslar med konsultverksamhet eller städ, tjänster som tidigare ofta sköttes internt inom företag men idag outsourcas i större utsräckning. Detta kan vara en av orsakerna till att antalet anställda inom tillverkning och utvinning har minskat påtagligt sedan 1990-talet (se föregående avsnitt). I Dalarna finns även många företag som sysslar med byggverksamhet av olika slag.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_aktiva_foretag[[1]]
@@ -314,9 +314,13 @@ Små branscher exkluderas (<50 anställda).
 Exkluderar även vissa företag som har stora kapitalrörelser mellan åren, fastighet, finans, försäkring
 Justering av löpande till fasta priser?
 
+Högst nettoomsättning bland de branscherna i Dalarna hade år `r nettoomsattning_varde$år` `r tolower(nettoomsattning_varde$highest_grupp)`, med en omsättning på drygt `r plyr::round_any(nettoomsattning_varde$highest_value_num/1000, 1)` miljarder kronor. Detta var en ökning på ungefär `r forandring_nettoomsattning_varde` procent sedan år `r nettoomsattning_varde_forsta_ar$år`. Även branschgruppen handel omsätter relativt mycket, ungefär `r plyr::round_any(nettoomsattning_varde$specific_value_num/1000, 1)` miljarder kronor.
+
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_nettoomsattning_bransch[[1]]
 ```
+
+Den bransch som sysselsätter flest personer är `r tolower(antal_anstallda_varde$highest_grupp)`, med ungefär `r format(abs(plyr::round_any(antal_anstallda_varde$highest_value_num, 1000)), big.mark = " ")` anställda år `r antal_anstallda_varde$år`.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_antal_anstallda_bransch[[1]]

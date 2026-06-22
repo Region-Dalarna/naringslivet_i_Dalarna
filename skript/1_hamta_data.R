@@ -10,7 +10,7 @@
 
 hoppa_over_felhantering = FALSE
 
-uppdatera_data = TRUE
+uppdatera_data = FALSE
 spara_figurer = FALSE
 
 if (!require("pacman")) install.packages("pacman")
@@ -118,9 +118,14 @@ if(uppdatera_data == TRUE){
                                                                                                      returnera_data_rmarkdown = TRUE)
   }, hoppa_over = hoppa_over_felhantering)
   
-  nettoomsattning_varde <- get_extremes_by_year(nettoomsattning_df, varde, Branschgrupp, år,accuracy = 1) %>% 
+  nettoomsattning_varde <- get_extremes_by_year(nettoomsattning_df, varde, Branschgrupp, år,accuracy = 1,specific_region = "Handel") %>% 
     slice_max(år, n = 1)
   
+  nettoomsattning_varde_forsta_ar <- get_extremes_by_year(nettoomsattning_df, varde, Branschgrupp, år,accuracy = 1,specific_region = nettoomsattning_varde$highest_grupp) %>% 
+    slice_min(år, n = 1)
+  
+  forandring_nettoomsattning_varde = round((log(nettoomsattning_varde$highest_value_num/nettoomsattning_varde_forsta_ar$highest_value_num))*100,0)
+
   source(here("skript","diag_fek_bransch_fran_2022_korrekt.R"), encoding="UTF-8")
   gg_antal_anstallda_bransch <- funktion_upprepa_forsok_om_fel( function() {diag_fek_bransch_lan_scb(cont_klartext = "Antal anställda",
                                                                                                      skriv_diagramfil = spara_figurer,
