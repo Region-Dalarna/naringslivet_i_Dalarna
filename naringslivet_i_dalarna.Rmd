@@ -494,7 +494,7 @@ gg_utlandskt_agande_arbetsstallen[[1]]
 
 Antal arbetsställen - ägarland
 
-Flest antal utlandsägda arbetsställen ägs från `r utlandskt_agande_arbetsstallen_land_varde$highest_grupp` (ungefär `r utlandskt_agande_arbetsstallen_land_varde$highest_value_num` arbetsställen).
+Flest antal utlandsägda arbetsställen ägs från `r utlandskt_agande_arbetsstallen_land_varde$highest_grupp` (ungefär `r utlandskt_agande_arbetsstallen_land_varde$highest_value_num` arbetsställen). Även från Finland och Holland ägs relativt många arbetsställen.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_utlandskt_agande_arbetsstallen[[2]]

@@ -110,7 +110,7 @@ if(uppdatera_data == TRUE){
   foradlingsvarde_varde <- get_extremes_by_year(foradlingsvarde_df, varde, Branschgrupp, år,accuracy = 1) %>% 
     slice_max(år, n = 1)
   
-  foradlingsvarde_varde_forsta_ar <- get_extremes_by_year(foradlingsvarde_df, varde, Branschgrupp, år,accuracy = 1,specific_region = nettoomsattning_varde$highest_grupp) %>% 
+  foradlingsvarde_varde_forsta_ar <- get_extremes_by_year(foradlingsvarde_df, varde, Branschgrupp, år,accuracy = 1,specific_region = foradlingsvarde_varde$highest_grupp) %>% 
     slice_min(år, n = 1)
   
   forandring_foradlingsvarde_varde = round((log(foradlingsvarde_varde$highest_value_num/foradlingsvarde_varde_forsta_ar$highest_value_num))*100,0)
