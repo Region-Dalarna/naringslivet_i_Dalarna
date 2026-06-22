@@ -3,7 +3,7 @@ diag_utlandskt_agande_bransch_land <- function(
     cont_klartext = "Antal anställda",			 # Max 1 åt gången. #  Finns: "Antal arbetsställen", "Antal anställda"
     tid_koder = "9999",			 # "*" = alla år. Finns från 2022. Max 1 åt gången
     gruppera_namn = NA,              # för att skapa egna geografiska indelningar av samtliga regioner som skickas med i uttaget
-    diagram_capt = "Källa: Tillväxtanalys. Bearbetning: Samhällsanalys, Region Dalarna\nDiagramförklaring: Ett arbetsställe definieras som utländskt om mer än hälften av aktiernas röstvärde innehas av utländska ägare.",
+    diagram_capt = "Källa: Tillväxtanalys. Bearbetning: Samhällsanalys, Region Dalarna\nDiagramförklaring: Ett arbetsställe definieras som utländskt om mer än hälften av aktiernas röstvärde innehas av\nutländska ägare.",
     visa_dataetiketter = FALSE,
     diag_fargvekt = NA,
     diag_bransch = TRUE, # Uppdelning på bransch
@@ -149,7 +149,7 @@ diag_utlandskt_agande_bransch_land <- function(
     
     diagramtitel <- glue("{variabel_txt} i utlandsägda företag i {region_txt} per ägarland år {ar_txt}")
     diagramfil <- glue("{safe_name}_agarland_{region_txt}_ar{ar_txt}.png")
-    diagram_capt = paste0(diagram_capt, "\nI diagrammet syns de 15 största ägarländerna.")
+    diagram_capt = paste0(diagram_capt, " I diagrammet syns de 15 största ägarländerna.")
     
     gg_obj <- SkapaStapelDiagram(
       skickad_df = agarland_df,

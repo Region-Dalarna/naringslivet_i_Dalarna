@@ -375,6 +375,8 @@ gg_brp_per_sysselsatt$brp_sysselsatt_tid_Dalarna
 Förädlingsvärden förklaras och redovisas per bransch om möjligt.
 Ett företags förädlingsvärde är det värde som skapas i verksamheten, eller enklare uttryckt det värde som företaget självt skapar. Förädlingsvärdet mäts vanligen som värdet av företagets produktion minus värdet av insatsvarorna i produktionen och utgör ett företags bidrag till landets BNP. Summan av alla förädlingsvärden vid samtliga arbetsställen utgör landets BNP. På motsvarande sätt är summan av de förädlingsvärden som genereras vid samtliga arbetsställen i en region bruttoregional produkten (BRP). Per definition summerar regionernas BRP upp till landets BNP.
 
+Högst förädlingsvärde bland branscherna i Dalarna hade år `r foradlingsvarde_varde$år` `r tolower(foradlingsvarde_varde$highest_grupp)`, med ett förädlingsvärde på drygt `r plyr::round_any(foradlingsvarde_varde$highest_value_num/1000, 1)` miljarder kronor. Detta var dock en `r ifelse(forandring_foradlingsvarde_varde>0,"ökning","minskning")` på ungefär `r abs(forandring_foradlingsvarde_varde)` procent sedan år `r nettoomsattning_varde_forsta_ar$år`. Även branschgrupper som handel, bygg och företagstjänster har relativt höga förädlingsvärden.
+
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_foradlingsvarde_bransch[[1]]
 ```
@@ -466,31 +468,33 @@ Här tittar vi på näringslivet i Dalarnas export- och importvolymer. Något at
 
 ## Utländskt ägande
 
-Tillväxtanalys har information om utlandsägande m m
+Antal anställda - bransch
 
-Antal anställda
-
-Bransch
+`r utlandskt_agande_anstallda_bransch_varde$highest_grupp` är den bransch i Dalarna där klart flest antal anställda jobbar i företag som ägs från utlandet (ungefär `r format(plyr::round_any(utlandskt_agande_anstallda_bransch_varde$highest_value_num,100),big.mark = " ")` personer år `r utlandskt_agande_anstallda_bransch_varde$år`).  
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_utlandskt_agande_anstallda[[1]]
 ```
 
-Ägarland
+Antal anställda - ägarland
+
+Flest antal anställda i utlandsägda företag jobbar i företag som ägs i `r utlandskt_agande_anstallda_land_varde$highest_grupp` (ungefär `r format(plyr::round_any(utlandskt_agande_anstallda_land_varde$highest_value_num, 100), big.mark = " ")` personer). Detta hänger samman med att Hitachi Energy, Dalarnas största privata arbetsgivare med över 3 000 anställda, är ett japanskt företag. Många jobbar även i företag som ägs i grannländer som Finland och Norge.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_utlandskt_agande_anstallda[[2]]
 ```
 
-Antal arbetsställen
+Antal arbetsställen - bransch
 
-Bransch
+Flest utlandsägda arbetsställen i Dalarna återfinns istället inom `r tolower(utlandskt_agande_arbetsstallen_bransch_varde$highest_grupp)`, med ungefär `r plyr::round_any(utlandskt_agande_arbetsstallen_bransch_varde$highest_value_num,10)` arbetsställen år `r utlandskt_agande_arbetsstallen_bransch_varde$år`.  
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_utlandskt_agande_arbetsstallen[[1]]
 ```
 
-Ägarland
+Antal arbetsställen - ägarland
+
+Flest antal utlandsägda arbetsställen ägs från `r utlandskt_agande_arbetsstallen_land_varde$highest_grupp` (ungefär `r utlandskt_agande_arbetsstallen_land_varde$highest_value_num` arbetsställen).
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_utlandskt_agande_arbetsstallen[[2]]
