@@ -344,7 +344,7 @@ Förädlingsvärdet mäts vanligen som värdet av företagets produktion minus v
 av insatsvarorna i produktionen och utgör ett företags bidrag till landets BNP. Summan av alla 
 förädlingsvärden vid samtliga arbetsställen utgör landets BNP. På motsvarande sätt är summan av de 
 förädlingsvärden som genereras vid samtliga arbetsställen i en region bruttoregional produkten (BRP). Per 
-definition summerar regionernas BRP upp till landets BNP.
+definition summerar regionernas BRP upp till landets BNP. Notera dock att Förädlingsvärdet i Företagens ekonomi (som används i denna rapport) motsvarar endast en del av det totala förädlingsvärdet i ekonomin, eftersom offentlig sektor, finansiella verksamheter och vissa nationalräkenskapsjusteringar saknas. Bruttoregionalprodukten (BRP) bygger däremot på regionalräkenskapernas helhetsbild och omfattar hela ekonomin, vilket förklarar att summan av förädlingsvärden i Företagens ekonomi understiger BRP (AI-genererad text).
 
 ## Tillväxt
 Vad kan vi säga om utvecklingen när det gäller ekonomisk tillväxt?
