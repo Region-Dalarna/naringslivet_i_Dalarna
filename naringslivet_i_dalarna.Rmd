@@ -261,10 +261,10 @@ gg_forv_90$forvarvsarbetande_90_forandring_Dalarna
 
 LA- och FA-regioner?
 
-## Näringslivets omfattning, utveckling och geografisk fördelning
+## Näringslivets omfattning, utveckling och geografiska fördelning
 Ett antal diagram som ger en bild av näringslivets sammansättning i Dalarna.
 
-Dalarnas största privata arbetsgivare är `r storsta_arbetsgivare_privat_varde$highest_grupp` i Ludvika som år `r storsta_arbetsgivare_privat_varde$år` hade drygt `r format(abs(plyr::round_any(storsta_arbetsgivare_privat_varde$highest_value_num, 100)), big.mark = " ")` anställda. Länets största offentliga arbetsgivare är `r storsta_arbetsgivare_offentlig_varde$highest_grupp` med ungefär `r format(abs(plyr::round_any(storsta_arbetsgivare_offentlig_varde$highest_value_num, 100)), big.mark = " ")` anställda. I samtliga av Dalarnas kommuner, förutom Ludvika, återfinns den största arbetsgivaren inom offentlig verksamhet.
+Dalarnas största privata arbetsgivare är `r storsta_arbetsgivare_privat_varde$highest_grupp` i Ludvika som år `r storsta_arbetsgivare_privat_varde$år` hade drygt `r format(abs(plyr::round_any(storsta_arbetsgivare_privat_varde$highest_value_num, 100)), big.mark = " ")` anställda. Länets största offentliga arbetsgivare är `r storsta_arbetsgivare_offentlig_varde$highest_grupp` med ungefär `r format(abs(plyr::round_any(storsta_arbetsgivare_offentlig_varde$highest_value_num, 100)), big.mark = " ")` anställda. I samtliga av Dalarnas kommuner, förutom Ludvika, återfinns den största arbetsgivaren inom offentlig verksamhet och det är i majoriteten av fallen just den kommunala verksamheten som är störst. Falu kommun är undantaget där den största arbetsgivaren är Region Dalarna, vilket är en följd av att Falu lasarett, länets största sjukhus, är placerat i kommunen.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_storsta_arbetsgivare$storsta_arbetsgivare
@@ -272,7 +272,7 @@ gg_storsta_arbetsgivare$storsta_arbetsgivare
 
 Antal företag
 
-Den vanligaste branschen bland Dalarnas företag var år `r antal_aktiva_foretag_bransch_varde$år`  `r tolower(antal_aktiva_foretag_bransch_varde$highest_grupp)`, med drygt `r format(plyr::round_any(antal_aktiva_foretag_bransch_varde$highest_value_num, 100), big.mark = " ")` aktiva företag. Här ingår exempelvis företag som sysslar med konsultverksamhet eller städ, tjänster som tidigare ofta sköttes internt inom företag men idag outsourcas i större utsräckning. Detta kan vara en av orsakerna till att antalet anställda inom tillverkning och utvinning har minskat påtagligt sedan 1990-talet (se föregående avsnitt). I Dalarna finns även många företag som sysslar med byggverksamhet av olika slag.
+Den vanligaste branschen bland Dalarnas företag var år `r antal_aktiva_foretag_bransch_varde$år`  `r tolower(antal_aktiva_foretag_bransch_varde$highest_grupp)`, med drygt `r format(plyr::round_any(antal_aktiva_foretag_bransch_varde$highest_value_num, 100), big.mark = " ")` aktiva företag. Här ingår exempelvis företag som sysslar med konsultverksamhet eller städ, tjänster som tidigare ofta sköttes internt inom företag, men idag outsourcas i större utsräckning. Detta kan vara en av orsakerna till att antalet anställda inom tillverkning och utvinning har minskat påtagligt sedan 1990-talet (se föregående avsnitt). I Dalarna finns även många företag som sysslar med byggverksamhet av olika slag.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_aktiva_foretag[[1]]
@@ -290,7 +290,7 @@ Antal nedlagda företag
 gg_nedlagda_foretag[[1]]
 ```
 
-Alternativ med alla tre i samma diagram
+Alternativ med alla tre i samma diagram (bra överblick, men det blir lite i minsta laget med texten)
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_aktiva_foretag[[2]]
@@ -461,11 +461,18 @@ Måttet beräknas enligt följande ekvation:
 |𝑆𝑗𝑟 − 𝑆𝑗| = det positiva värdet av skillnaden mellan andelen sysselsatta i bransch j i region r och andelen sysselsatta i bransch j i hela landet
 
 # Internationella relationer
-Här tittar vi på näringslivet i Dalarnas export- och importvolymer. Något att hämta från det pågående arbetet med export- och insammanställning?
+Här tittar vi på näringslivet i Dalarnas export- och importvolymer. Något att hämta från det pågående arbetet med export- och importsammanställning?
 
-## Export
 
-## Import
+
+## Export och import
+Dalarna hade under 2024 en positiv handelsbalans, d v s värdet av exporten översteg värdet av importen. Under de senaste 25 åren har handelsbalansen varit positiv och successivt ökat från 12 miljarder kronor 1999 till närmare 26 miljarder år 2024. 
+
+Exportvärdet år 2024 var drygt 50 miljarder kronor och importvärdet år 2024 var cirka 25 miljarder, d v s exporten är mer än dubbelt så stor som importen.
+
+Vilka är de stora exportörerna?
+
+Vilka importerar?
 
 ## Utländskt ägande
 
@@ -495,7 +502,7 @@ gg_utlandskt_agande_arbetsstallen[[1]]
 
 Antal arbetsställen - ägarland
 
-Flest antal utlandsägda arbetsställen ägs från `r utlandskt_agande_arbetsstallen_land_varde$highest_grupp` (ungefär `r utlandskt_agande_arbetsstallen_land_varde$highest_value_num` arbetsställen). Även från Finland och Holland ägs relativt många arbetsställen.
+Flest antal utlandsägda arbetsställen har ägare från `r utlandskt_agande_arbetsstallen_land_varde$highest_grupp` (ungefär `r utlandskt_agande_arbetsstallen_land_varde$highest_value_num` arbetsställen) följt av Finland och Nederländerna med ett relativt stort antal arbetsställen i Dalarna.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_utlandskt_agande_arbetsstallen[[2]]
