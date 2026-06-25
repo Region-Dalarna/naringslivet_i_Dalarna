@@ -64,18 +64,20 @@ Senast uppdaterad: `r Sys.Date()`</i>
 
 # Sammanfattning {-}
 
-Här ska vi ha en sammanfattning av rapporten. Det ska vara en punktlista med de viktigaste budskapen och inte ett referat av varje avsnitt.
+Näringslivet i Dalarna präglas av solsken och glatt humör. 
 <br>
 
 <ul>
 
-<li>Första punkten. </li>
+<li> Tillverkning och utvinning har dominerat under lång tid när det gäller omsättning och fortsätter att göra så. Hälso- och sjukvården har flest anställda. </li>
 
-<li>Andra punkten. </li>
+<li> Exporten är större än importen, eller tvärtom... Det utländska ägandet är relativt begränsat. </li>
+
+<li> Produktivitetsutvecklingen är svag över tid. </li>
     
-<li>Tredje punkten. </li>
+<li> Flest nya företag startas i branscherna Företagstjänster och Byggverksamhet, de branscher som även hade flest antal aktiva företag år 2023. Det är även i dessa branscher som flest antal företag läggs ned. Under 2023 lades det ner fler företag än vad som startades. </li>
 
-<li>Fjärde punkten. </li>
+<li> Lönsamheten är på topp! </li>
 
 </ul>
 
@@ -83,21 +85,13 @@ Här ska vi ha en sammanfattning av rapporten. Det ska vara en punktlista med de
 
 Röd tråd! Viktigt att det som är med behövs för att ge en bra berättelse. 
 
-Vad vill vi uppnå? Hur gör vi det smidigast? Övergripande slutsatser och analys i rapport med ett fåtal diagram som stödjer slutsatser, men möjlighet att länka vidare till en mer omfattande rapport (Shiny?) där användaren kan ta del av mer detaljer kring näringslivet i länet?
-
-Bidra med kunskap om länets näringsliv och vägleda strategiska och finansiella insatser.
-Öka kunskapen om Dalarnas näringslivsstruktur och utveckling.
-
 I denna rapport beskrivs näringslivet i Dalarna. Näringslivet definieras som de delar i ekonomin som tillverkas och säljs på en marknad, både varor och tjänster, och är i huvudsak privat ägd. I näringslivet ingår dock även offentlig verksamhet som drivs i bolagsform. Renodlad offentlig verksamhet som finansieras genom skatter och avgifter ingår inte i näringslivsdefinitionen. Däremot är den offentliga verksamheten ofta viktig för näringslivet, vilket gör att den behöver beskrivas och ställas i relation till näringslivet för att förstå hela ekonomin. 
 
 Rapporten inleds med en övergripande bild av näringslivet, följt av en genomgång av länets utveckling när det gäller länets bruttoregionprodukt och företagens lönsamhet. Därefter ges information och import, export samt sysselsättning. Rapporten avslutas med avsnitt som behandlar lokalt, socialt samt hållbart företagande i länet.
 
-Vilka är betydande för Dalarnas ekonomi - nu och historiskt?
-Hur konkurrenskraftiga är företag och branscher i ett nationellt perspektiv?
-Hur ser branschstrukturen ut - mix av stora och små, lönsamma företag?
-Koppling mot internationella marknader, kunskapsintensitet och förnyelseförmåga?
+Syftet med rapporten är att beskriva näringslivets utveckling och utmaningar i Dalarna, bidra med kunskap om länets näringslivsstruktur och vägleda strategiska och finansiella insatser. Rapporten koncentreras till ett antal centrala områden som behöver beskrivas för att förstå näringslivet i länet. Som komplement finns ytterligare information och detaljer i en särskild rapport *här* (länkar till shiny-app).
 
-Syftet med rapporten är att beskriva näringslivet i Dalarna och dess förutsättningar. Den huvudsakliga källan är SCB. Ambitionen är inte att ge en dagsaktuell bild av läget i näringslivet, utan en bredare beskrivning. Det innebär att de data som används är i stora delar för kalenderåret 2024. 
+Den huvudsakliga källan är SCB. Ambitionen är inte att ge en dagsaktuell bild av läget i näringslivet, utan en bredare beskrivning. Det innebär att de data som används är i stora delar för kalenderåret 2024. 
 
 Urvalet av verksamheter som ingår hämtas från SCB:s Företagsdatabas och de inkluderade företagen har avgränsats till att ha
 
@@ -109,6 +103,8 @@ Urvalet av verksamheter som ingår hämtas från SCB:s Företagsdatabas och de i
 
 </ul>
 
+Antalet företag i länet som möter dessa villkor var under 2023 cirka 23 000 stycken.
+
 Vilket datum gäller för uttag ur FDB?
 
 Verksamheter inom offentlig sektor är exkluderade, även om de har betydelse för företag i privat sektor i form av kunder. Således kan förändringar inom offentligt sektor få effekt på utvecklingen för företag i privat sektor.
@@ -119,8 +115,13 @@ Arbetsställen behöver också hanteras i någon form eftersom stora företag so
 
 Ge en kort sammanfattning inledningsvis i respektive avsnitt?
 
+Vilka är betydande för Dalarnas ekonomi - nu och historiskt?
+Hur konkurrenskraftiga är företag och branscher i ett nationellt perspektiv?
+Hur ser branschstrukturen ut - mix av stora och små, lönsamma företag?
+Koppling mot internationella marknader, kunskapsintensitet och förnyelseförmåga?
+
 # Dalarnas näringsliv och företagande
-Några övergripande basfakta om Dalarnas näringsliv och företag
+Det här avsnittet ger några övergripande basfakta om Dalarnas näringsliv och företag. 
 
 ```{r, include = FALSE}
   
@@ -137,7 +138,7 @@ foretagare_df <- pxweb2_hamta_data(
     Tid = "9999"
   ))
 
-# Funktion som beräknar andel företagaer
+# Funktion som beräknar andel företagare
 andel_foretagare <- function(data, group_vars) {
   
   data %>%
@@ -222,7 +223,7 @@ karta_foretagare
 
 ```
 
-Den typiske företagaren är en inrikes född man, medan klart färre andel utrikes födda kvinnor driver egna företag.
+Den typiske företagaren är en inrikes född man, medan klart färre utrikes födda kvinnor driver egna företag.
 
 Senaste mättillfället samt för 10 och 20 år sedan?
 
