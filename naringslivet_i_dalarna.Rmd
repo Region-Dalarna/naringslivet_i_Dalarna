@@ -71,7 +71,9 @@ Näringslivet i Dalarna präglas av solsken och glatt humör.
 
 <li> Tillverkning och utvinning har dominerat under lång tid när det gäller omsättning och fortsätter att göra så. Hälso- och sjukvården har flest anställda. </li>
 
-<li> Exporten är större än importen, eller tvärtom... Det utländska ägandet är relativt begränsat. </li>
+<li> Exportens värde har vuxit över tid och är idag mer än 50 miljarder kronor per år, mer än dubbelt så högt som värdet av importen. </li>
+
+<li> Det utländska ägandet är relativt begränsat. </li>
 
 <li> Produktivitetsutvecklingen är svag över tid. </li>
     
@@ -225,8 +227,6 @@ karta_foretagare
 
 Den typiske företagaren är en inrikes född man, medan klart färre utrikes födda kvinnor driver egna företag.
 
-Senaste mättillfället samt för 10 och 20 år sedan?
-
 Antal företag i urvalet
 Antal anställda
 Omsättning
@@ -236,19 +236,11 @@ https://www.foretagsklimat.se/dalarnas-lan
 Grov branschindelning med omsättning och sysselsättning per bransch
 5 största företagen per bransch och deras omsättning och sysselsättning
 
-Skapa kommunflikar med motsvarande indelning som är klickbara
-3 största företagen per bransch och deras omsättning och sysselsättning
-
-
-Total import och export?
-
-Förändring i näringslivets sammansättning de senaste x åren?
-
 Från avsnitt 2.2 i kompetensförsörjningsrapporten
 
-Näringslivets struktur har förändrats relativt mycket de senaste dryga 30 åren. I början av 1990 talet var "`r tolower(storsta_bransch_varde_forsta_ar$highest_grupp)`" den klart största branschen i Dalarna med mer än 30 000 sysselsatta (se det första diagrammet nedan). Sedan dess har antalet sysselsatta inom branschen minskat med drygt `r format(abs(plyr::round_any(bransch_storsta_forandring_varde$lowest_value_num, 1000)),big.mark = " ")` personer (se det andra diagrammet nedan). 
+Näringslivets struktur har förändrats relativt mycket de senaste dryga 30 åren. I början av 1990 talet var *`r tolower(storsta_bransch_varde_forsta_ar$highest_grupp)`* den klart största branschen i Dalarna med mer än 30 000 sysselsatta (se det första diagrammet nedan). Sedan dess har antalet sysselsatta inom branschen minskat med drygt `r format(abs(plyr::round_any(bransch_storsta_forandring_varde$lowest_value_num, 1000)),big.mark = " ")` personer (se det andra diagrammet nedan). 
 
-År `r storsta_bransch_varde_senaste_ar$år` var "`r tolower(storsta_bransch_varde_senaste_ar$highest_grupp)`" den största branschgruppen, med knappt `r format(abs(plyr::round_any(storsta_bransch_varde_senaste_ar$highest_value_num, 1000)), big.mark = " ")` sysselsatta i länet. Detta var något fler än 1990. En bransch där sysselsättningen ökat avsevärt är "`r tolower(bransch_storsta_forandring_varde$highest_grupp)`", med ungefär `r format(abs(plyr::round_any(bransch_storsta_forandring_varde$highest_value_num, 100)))` fler sysselsatta år `r storsta_bransch_varde_senaste_ar$år` jämfört med 1990.
+År `r storsta_bransch_varde_senaste_ar$år` var *`r tolower(storsta_bransch_varde_senaste_ar$highest_grupp)`* den största branschgruppen, med knappt `r format(abs(plyr::round_any(storsta_bransch_varde_senaste_ar$highest_value_num, 1000)), big.mark = " ")` sysselsatta i länet. Detta var något fler än 1990. En bransch där sysselsättningen ökat avsevärt är *`r tolower(bransch_storsta_forandring_varde$highest_grupp)`*, med ungefär `r format(abs(plyr::round_any(bransch_storsta_forandring_varde$highest_value_num, 100)))` fler sysselsatta år `r storsta_bransch_varde_senaste_ar$år` jämfört med 1990.
 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
@@ -315,6 +307,8 @@ Små branscher exkluderas (<50 anställda).
 Exkluderar även vissa företag som har stora kapitalrörelser mellan åren, fastighet, finans, försäkring
 Justering av löpande till fasta priser?
 
+Hur ser vår branschindelning ut? Har vi genomgående samma företagsurval och bara fokus på de privata företagen? 
+
 Högst nettoomsättning bland de branscherna i Dalarna hade år `r nettoomsattning_varde$år` `r tolower(nettoomsattning_varde$highest_grupp)`, med en omsättning på drygt `r plyr::round_any(nettoomsattning_varde$highest_value_num/1000, 1)` miljarder kronor. Detta var en ökning på ungefär `r forandring_nettoomsattning_varde` procent sedan år `r nettoomsattning_varde_forsta_ar$år`. Även branschgruppen handel omsätter relativt mycket, ungefär `r plyr::round_any(nettoomsattning_varde$specific_value_num/1000, 1)` miljarder kronor.
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
@@ -327,8 +321,15 @@ Den bransch som sysselsätter flest personer är `r tolower(antal_anstallda_vard
 gg_antal_anstallda_bransch[[1]]
 ```
 
+I tabellen i inledningen säger vi att hälso- och sjukvård är vår största bransch med 25 tusen sysselsatta i länet. Här behöver vi hålla en linje för att inte förvirra läsarna. Ett alternativ är att förtydliga skillnaden mellan sysselsättning på hela arbetsmarknaden respektive i det privata näringslivet?
+
 ## Kommunala variationer
 Här kommenterar vi hur det ser ut i våra kommuner, vilka skillnader som finns m m.
+
+Skapa kommunflikar med motsvarande indelning som är klickbara
+3 största företagen per bransch och deras omsättning och sysselsättning?
+
+Är det värt att ta det här i ett första steg eller något att komplettera med?
 
 # Regionalräkenskaper (BRP)
 Titta tillbaka på utvecklingen för BRP i länet, jämfört med riket och i ett EU-perspektiv.
@@ -341,39 +342,32 @@ Finns det behov av att visa på vilket konjunkturläge som råder innan vi visar
 
 Sammanställning av utvecklingen av tillväxt, förädlingsvärden, produktivitet, lönesummor per bransch och skattekraft.
 
-Förädlingsvärdet mäts vanligen som värdet av företagets produktion minus värdet 
-av insatsvarorna i produktionen och utgör ett företags bidrag till landets BNP. Summan av alla 
-förädlingsvärden vid samtliga arbetsställen utgör landets BNP. På motsvarande sätt är summan av de 
-förädlingsvärden som genereras vid samtliga arbetsställen i en region bruttoregional produkten (BRP). Per 
-definition summerar regionernas BRP upp till landets BNP. Notera dock att Förädlingsvärdet i Företagens ekonomi (som används i denna rapport) motsvarar endast en del av det totala förädlingsvärdet i ekonomin, eftersom offentlig sektor, finansiella verksamheter och vissa nationalräkenskapsjusteringar saknas. Bruttoregionalprodukten (BRP) bygger däremot på regionalräkenskapernas helhetsbild och omfattar hela ekonomin, vilket förklarar att summan av förädlingsvärden i Företagens ekonomi understiger BRP (AI-genererad text).
+Ekonomins utveckling (tillväxt) i ett land mäts normalt via bruttonationalprodukten (BNP). Utgångspunkten är måttet förädlingsvärde, som är värdet av ett företags produktion minus värdet av insatsvarorna i produktionen. Förädlingsvärdet utgör ett företags bidrag till landets BNP och summan av alla förädlingsvärden vid samtliga arbetsställen utgör landets BNP. 
+
+På motsvarande sätt är summan av de 
+förädlingsvärden som genereras vid samtliga arbetsställen i en region bruttoregionalprodukten (BRP). Per 
+definition summerar regionernas BRP upp till landets BNP. 
+
+Notera dock att förädlingsvärdet i SCB:s databas *Företagens ekonomi* (som används i denna rapport) motsvarar endast en del av det totala förädlingsvärdet i ekonomin, eftersom offentlig sektor, finansiella verksamheter och vissa nationalräkenskapsjusteringar saknas. 
+
+Bruttoregionalprodukten (BRP) bygger däremot på regionalräkenskapernas helhetsbild och omfattar hela ekonomin, vilket förklarar att summan av förädlingsvärden i Företagens ekonomi understiger BRP.
 
 ## Tillväxt
-Vad kan vi säga om utvecklingen när det gäller ekonomisk tillväxt?
-Den ekonomiska tillväxten mäts som förändringen i Bruttonationalprodukten (BNP) mellan två tidsperioder. Det ekonomiska välståndet definieras som nivån på BNP vid en viss tidpunkt.
+Den ekonomiska tillväxten mäts som förändringen i BNP (eller BRP) mellan två tidsperioder. Det ekonomiska välståndet definieras som nivån på BNP vid en viss tidpunkt och vanligtvis mätt per invånare.
 
-
+2024 hade Stockholms län den högsta BRP per invånare, cirka 830 tkr. Det är markant högre än Norrbotten med drygt 610 tkr. Dalarna har en BRP per invånare på drygt 450 tkr, vilket är femte lägst i riket. 
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_brp_invanare[[1]]
 ```
 
+Utvecklingen av BRP per invånare i Dalarna sedan 2000 följer i princip den utveckling som varit för riket som helhet. Noterbart är dock att det under senare år varit en del skillnader mellan de preliminära och slutliga BRP-siffrorna i SCB:s redovisningar. De preliminära siffrorna bör därför bedömas med försiktighet. 
+
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_brp_invanare[[2]]
 ```
 
-## Produktivitet
-Hur har arbetsproduktiviteten utvecklats i länet? För att mäta produktivitet används arbetsproduktiviteten som definieras som förädlingsvärdet per arbetsinsats (vanligen antal arbetade timmar). Enklare uttryckt visar arbetsproduktiviteten hur mycket värde som skapas per arbetad timma. På regional nivå finns inte arbetade timmar tillgängligt, vilket innebär att produktiviteten mäts genom förädlingsvärdet dividerat med antal sysselsatta. 
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
-gg_brp_per_sysselsatt$brp_sysselsatt_Sverige
-```
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
-gg_brp_per_sysselsatt$brp_sysselsatt_tid_Dalarna
-```
-
 ## Förädlingsvärden
-Förädlingsvärden förklaras och redovisas per bransch om möjligt.
 Ett företags förädlingsvärde är det värde som skapas i verksamheten, eller enklare uttryckt det värde som företaget självt skapar. Förädlingsvärdet mäts vanligen som värdet av företagets produktion minus värdet av insatsvarorna i produktionen och utgör ett företags bidrag till landets BNP. Summan av alla förädlingsvärden vid samtliga arbetsställen utgör landets BNP. På motsvarande sätt är summan av de förädlingsvärden som genereras vid samtliga arbetsställen i en region bruttoregional produkten (BRP). Per definition summerar regionernas BRP upp till landets BNP.
 
 Högst förädlingsvärde bland branscherna i Dalarna hade år `r foradlingsvarde_varde$år` `r tolower(foradlingsvarde_varde$highest_grupp)`, med ett förädlingsvärde på drygt `r plyr::round_any(foradlingsvarde_varde$highest_value_num/1000, 1)` miljarder kronor. Detta var dock en `r ifelse(forandring_foradlingsvarde_varde>0,"ökning","minskning")` på ungefär `r abs(forandring_foradlingsvarde_varde)` procent sedan år `r nettoomsattning_varde_forsta_ar$år`. Även branschgrupper som handel, bygg och företagstjänster har relativt höga förädlingsvärden.
@@ -381,6 +375,38 @@ Högst förädlingsvärde bland branscherna i Dalarna hade år `r foradlingsvard
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_foradlingsvarde_bransch[[1]]
 ```
+
+Kan vi kika på lite längre sikt och eventuellt göra jämförelser med riket alternativt inom NMS? Det känns som att det blir lite för ryckigt när vi tittar på förädlingsvärdet under så kort tid.
+
+Har vi ett totalt förädlingsvärde, både utifrån BRP-beräkningen och utifrån FEK-beräkningen för att se skillnaden mellan det offentliga och det privata samt att kunna ställa branschernas andel i relation till det totala värdet?
+
+## Produktivitet
+För att mäta produktivitet används arbetsproduktiviteten som definieras som förädlingsvärdet per arbetsinsats (vanligen antal arbetade timmar). Enklare uttryckt visar arbetsproduktiviteten hur mycket värde som skapas per arbetad timma. På regional nivå finns inte arbetade timmar tillgängligt, vilket innebär att produktiviteten mäts genom förädlingsvärdet dividerat med antal sysselsatta.
+
+Dalarna har den tredje lägsta arbetsproduktiviteten i riket, vilket innebär att förädlingsvärdet som skapas av samtliga sysselsatta i länet är svagt relativt övriga län.
+
+Finns det någon förklaring i att vi skulle ha fler sysselsatta som arbetar färre timmar än övriga län? Kan man söka den informationen bakvägen på något sätt? Alternativt är de som är sysselsatta i genomsnitt inte särskilt effektiva i det de gör.
+
+Arbetsproduktiviteten per bransch?
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_brp_per_sysselsatt$brp_sysselsatt_Sverige
+```
+
+Utvecklingen av arbetsproduktiviteten förefaller vara svag över en längre tid, vilket visar sig i att gapet mellan riksgenomsnittet och Dalarna ökar successivt. Nedgången i samband med pandemin, vilken påverkade besöksnäringen i länet, har dröjt sig kvar under de efterföljande åren.
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_brp_per_sysselsatt$brp_sysselsatt_tid_Dalarna
+```
+
+Förädlingsvärden förklaras och redovisas per bransch om möjligt.
+
+## Lönesummor
+Vad kan vi göra här?
+
+## Skattekraft
+Vad kan vi göra här?
+
 
 # Företagens lönsamhet
 Här tittar vi på lönsamhetsmått, hur nyföretagandet utvecklas och hur företagens överlevnadsgrad ser ut på kort och lång sikt.
