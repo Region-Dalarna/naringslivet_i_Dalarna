@@ -64,14 +64,13 @@ Senast uppdaterad: `r Sys.Date()`</i>
 
 # Sammanfattning {-}
 
-Näringslivet i Dalarna präglas av solsken och glatt humör. 
 <br>
 
 <ul>
 
-<li> Tillverkning och utvinning har dominerat under lång tid när det gäller omsättning och fortsätter att göra så. Hälso- och sjukvården har flest anställda. </li>
+<li> Tillverkning och utvinning har dominerat under lång tid när det gäller omsättning och fortsätter att göra så, medan flest anställda finns inom hälso- och sjukvården. </li>
 
-<li> Exportens värde har vuxit över tid och är idag mer än 50 miljarder kronor per år, mer än dubbelt så högt som värdet av importen. </li>
+<li> Exportens värde har vuxit över tid och är idag mer än 50 miljarder kronor per år, mer än dubbelt så högt som värdet av importen. Exportvärdet motsvarar 2,5 procent av Sveriges export. Den största exporten, ca 60 procent, sker till Europa. Exporten domineras av produktområdena trä, metaller och övriga tillverkade varor. </li>
 
 <li> Det utländska ägandet är relativt begränsat. </li>
 
@@ -502,9 +501,15 @@ Dalarna hade under 2024 en positiv handelsbalans, d v s värdet av exporten öve
 
 Exportvärdet år 2024 var drygt 50 miljarder kronor och importvärdet år 2024 var cirka 25 miljarder, d v s exporten är mer än dubbelt så stor som importen.
 
-Vilka är de stora exportörerna?
+34 företag i länet exporterade under 2024 för mer än 100 miljoner kronor. Det exakta exportvärdet per företag går finns inte i företagsstatistiken, men de två största exportörerna utifrån omsättningsklass är Outokumpu Stainless AB och Stora Enso AB med mer än tio miljarder kronor. Även Clas Ohlson AB är en stor exportör och det högexporterande företag som har flest anställda.
 
-Vilka importerar?
+*Kan vi ta fram mer exakta exportsiffror än de som finns i shinyappen?*
+
+Importen till Dalarna är som nämnts ovan cirka 26 miljarder kronoro. 17 företag importerade under 2024 för mer än 100 miljoner kronor. Även i detta fall är Outokumpu Stainless AB och Stora Enso AB de företag med högst omsättning, tillsammans med Stora Enso Skog AB, som importerar för mer än 100 miljoner kronor.
+
+Det är 13 företag som både exporterar och importerar för mer än 100 miljoner kronor under 2024. Samtliga omsätter minst 1 miljard kronor för verksamhetsåret, utom Autoform i Malung AB och Dellner Couplers AB.
+
+*Kan vi ta fram mer exakta importsiffror än de som finns i shinyappen?*
 
 ## Utländskt ägande
 
