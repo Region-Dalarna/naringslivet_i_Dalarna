@@ -230,6 +230,8 @@ Antal företag i urvalet
 Antal anställda
 Omsättning
 
+<span class = "kommentar">All data från https://www.foretagsklimat.se/ladda-ner/ (filen statistikfaktorer) går att ladda ned relativt enkelt. Se sårbarhetsanalysen för några exempel</span>
+
 https://www.foretagsklimat.se/dalarnas-lan
 
 Grov branschindelning med omsättning och sysselsättning per bransch
@@ -299,7 +301,11 @@ gg_aktiva_foretag_storleksklass[[1]]
 
 
 ## Branscher - omsättning och sysselsatta
+
+<span class = "kommentar">Oklart om det finns ett diagramskript för det?</span>
+
 Bubbeldiagrammet?
+
 
 Blekinge använder samma indelning som Region Skåne, vilket är 40 olika branscher utifrån SNI-indelning.
 Små branscher exkluderas (<50 anställda).
@@ -307,6 +313,8 @@ Exkluderar även vissa företag som har stora kapitalrörelser mellan åren, fas
 Justering av löpande till fasta priser?
 
 Hur ser vår branschindelning ut? Har vi genomgående samma företagsurval och bara fokus på de privata företagen? 
+
+<span class = "kommentar">Bara fokus på de privata företagen, men kan vara mindre skillnader mellan SCB och Tillväxtanalys. För längre tidsserier (sysselsatta sedan 1990) har SNI-koderna ändrats, så det är inte samma</span>
 
 Högst nettoomsättning bland de branscherna i Dalarna hade år `r nettoomsattning_varde$år` `r tolower(nettoomsattning_varde$highest_grupp)`, med en omsättning på drygt `r plyr::round_any(nettoomsattning_varde$highest_value_num/1000, 1)` miljarder kronor. Detta var en ökning på ungefär `r forandring_nettoomsattning_varde` procent sedan år `r nettoomsattning_varde_forsta_ar$år`. Även branschgruppen handel omsätter relativt mycket, ungefär `r plyr::round_any(nettoomsattning_varde$specific_value_num/1000, 1)` miljarder kronor.
 
@@ -320,7 +328,8 @@ Den bransch som sysselsätter flest personer är `r tolower(antal_anstallda_vard
 gg_antal_anstallda_bransch[[1]]
 ```
 
-I tabellen i inledningen säger vi att hälso- och sjukvård är vår största bransch med 25 tusen sysselsatta i länet. Här behöver vi hålla en linje för att inte förvirra läsarna. Ett alternativ är att förtydliga skillnaden mellan sysselsättning på hela arbetsmarknaden respektive i det privata näringslivet?
+I tabellen i inledningen säger vi att hälso- och sjukvård är vår största bransch med 25 tusen sysselsatta i länet. Här behöver vi hålla en linje för att inte förvirra läsarna. Ett alternativ är att förtydliga skillnaden mellan sysselsättning på hela arbetsmarknaden respektive i det privata näringslivet? <span class = "kommentar">Det behöver vi göra</span>
+
 
 ## Kommunala variationer
 Här kommenterar vi hur det ser ut i våra kommuner, vilka skillnader som finns m m.
@@ -334,6 +343,9 @@ Skapa kommunflikar med motsvarande indelning som är klickbara
 Titta tillbaka på utvecklingen för BRP i länet, jämfört med riket och i ett EU-perspektiv.
 
 Hur förhåller sig dessa siffror till det privata respektive det offentliga?
+
+<span class = "kommentar">Finns exempelvis: https://www.statistikdatabasen.scb.se/pxweb/sv/ssd/START__NR__NR0105__NR0105A/NR0105ENS2010T03A/</span>
+
 
 Mer aktuella delar får flyttas in i "Det samhällsekonomiska läget" och vi hänvisar dit för mer aktuell information.
 
@@ -377,16 +389,22 @@ gg_foradlingsvarde_bransch[[1]]
 
 Kan vi kika på lite längre sikt och eventuellt göra jämförelser med riket alternativt inom NMS? Det känns som att det blir lite för ryckigt när vi tittar på förädlingsvärdet under så kort tid.
 
+<span class = "kommentar">Tveksamt med längre sikt då det är olika tabeller med delvis olika branscher som sannolikt är svåra att jämföra. Jämförelser med riket/NMS är kanske mer intressanta för BRP (se nedan)/</span>
+
 Har vi ett totalt förädlingsvärde, både utifrån BRP-beräkningen och utifrån FEK-beräkningen för att se skillnaden mellan det offentliga och det privata samt att kunna ställa branschernas andel i relation till det totala värdet?
+<span class = "kommentar">Se kommentar ovan om BRP uppdelat på sektor. Under rubriken regionalräkenskaper i statistikdatabasen finns lite olika tabeller över BRP/</span>
 
 ## Produktivitet
 För att mäta produktivitet används arbetsproduktiviteten som definieras som förädlingsvärdet per arbetsinsats (vanligen antal arbetade timmar). Enklare uttryckt visar arbetsproduktiviteten hur mycket värde som skapas per arbetad timma. På regional nivå finns inte arbetade timmar tillgängligt, vilket innebär att produktiviteten mäts genom förädlingsvärdet dividerat med antal sysselsatta.
 
+<span class = "kommentar">Text nedan gällde sannolikt på preliminär data. Vi är ungefär lika bra som jämförbara län</span>
 Dalarna har den tredje lägsta arbetsproduktiviteten i riket, vilket innebär att förädlingsvärdet som skapas av samtliga sysselsatta i länet är svagt relativt övriga län.
 
 Finns det någon förklaring i att vi skulle ha fler sysselsatta som arbetar färre timmar än övriga län? Kan man söka den informationen bakvägen på något sätt? Alternativt är de som är sysselsatta i genomsnitt inte särskilt effektiva i det de gör.
 
+
 Arbetsproduktiviteten per bransch?
+<span class = "kommentar">Nej, inte så vitt jag kan se. Finns under Nationalräkenskaper/Regionalräkenskaper/Regionalräkenskaper årsdata i statistikdatabasen</span>
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
 gg_brp_per_sysselsatt$brp_sysselsatt_Sverige
@@ -546,6 +564,9 @@ gg_utlandskt_agande_arbetsstallen[[2]]
 ```
 
 # Arbetskraften  
+
+<span class = "kommentar">Hänvisa till en uppdaterad kompetensförsörjningsrapport/Shiny-appar?</span>
+
 Vad är viktigt för näringslivsperspektivet?
 Vilka är det som är sysselsatta? 
 På branschnivå?
