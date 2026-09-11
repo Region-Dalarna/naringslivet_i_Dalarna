@@ -10,7 +10,7 @@
 
 hoppa_over_felhantering = FALSE
 
-uppdatera_data = TRUE
+uppdatera_data = FALSE
 spara_figurer = FALSE
 
 if (!require("pacman")) install.packages("pacman")
@@ -205,7 +205,7 @@ if(uppdatera_data == TRUE){
 
 # Går inte att ladda in från global environment, så skapas alltid här i slutet
 # Största arbetsgivare - 1 diagram
-source(here("skript","storsta_arbetsgivare_tabell.R"), encoding="UTF-8")
+source(here("skript","storsta_arbetsgivare_tabell_ny.R"), encoding="UTF-8")
 gg_storsta_arbetsgivare <- funktion_upprepa_forsok_om_fel( function() {diag_storsta_arbetsgivare(returnera_data = TRUE)
 }, hoppa_over = hoppa_over_felhantering)
 
