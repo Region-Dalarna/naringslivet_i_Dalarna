@@ -1,8 +1,7 @@
-test <- diag_fdb_omsattning_mm(region_vekt = "22")
-
 diag_fdb_omsattning_mm <- function(region_vekt = "20", # Enbart län för tillfället
                                    diagram_capt = "Källa: Företagsdatabasen (FDB), SCB. Bearbetning: Samhällsanalys, Region Dalarna\nDiagramförklaring: Företag som har säte i länet, är registrerade för F-skatt, är verksamma och har en omsättning.",
                                    output_mapp = "G:/Samhällsanalys/API/Fran_R/Utskrift/",
+                                   returnera_data_rmarkdown == TRUE,
                                    visa_dataetiketter = TRUE,
                                    skriv_diagramfil = FALSE) {
   
@@ -27,8 +26,7 @@ diag_fdb_omsattning_mm <- function(region_vekt = "20", # Enbart län för tillf�
       remotes::install_github("Region-Dalarna/rdpaket", subdir = "packages/rdpostgres")
     }
     if (!requireNamespace("tidyverse", quietly = TRUE)) install.packages("tidyverse")
-    #if (!requireNamespace("glue", quietly = TRUE)) install.packages("glue")
-    #if (!requireNamespace("openxlsx", quietly = TRUE)) install.packages("openxlsx")
+    if (!requireNamespace("glue", quietly = TRUE)) install.packages("glue")
     
     vald_region <- skapa_kortnamn_lan(hamtaregion_kod_namn(region_vekt)$region)
     
@@ -64,6 +62,10 @@ diag_fdb_omsattning_mm <- function(region_vekt = "20", # Enbart län för tillf�
         mutate(omsattning_grupp = group_omsattning(`storleksklass, oms`)) |> 
           mutate(omsattning_grupp = factor(omsattning_grupp, levels = group_order, ordered = TRUE)) |> 
             count(omsattning_grupp)
+    
+    if(returnera_data_rmarkdown == TRUE){
+      assign(paste0(safe_name,"foretag_oms_ranking_df"), foretag_oms_ranking_df, envir = .GlobalEnv)
+    }
   
       
       diagramtitel <- glue("Antal företag i {vald_region} uppdelat på omsättning")
@@ -110,6 +112,10 @@ diag_fdb_omsattning_mm <- function(region_vekt = "20", # Enbart län för tillf�
       mutate(anstallda_grupp = group_anstallda(storleksklass)) |> 
         mutate(anstallda_grupp = factor(anstallda_grupp, levels = anstallda_order, ordered = TRUE)) |> 
           count(anstallda_grupp)
+  
+  if(returnera_data_rmarkdown == TRUE){
+    assign(paste0(safe_name,"foretag_anst_ranking_df"), foretag_anst_ranking_df, envir = .GlobalEnv)
+  }
     
   diagramtitel <- glue("Antal företag i {vald_region} per företagsstorlek")
   diagramfil <- glue("antal_foretag_anstallda_SCB_{vald_region}.png")
