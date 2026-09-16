@@ -1,7 +1,7 @@
 diag_fdb_omsattning_mm <- function(region_vekt = "20", # Enbart län för tillfället
                                    diagram_capt = "Källa: Företagsdatabasen (FDB), SCB. Bearbetning: Samhällsanalys, Region Dalarna\nDiagramförklaring: Företag som har säte i länet, är registrerade för F-skatt, är verksamma och har en omsättning.",
                                    output_mapp = "G:/Samhällsanalys/API/Fran_R/Utskrift/",
-                                   returnera_data_rmarkdown == TRUE,
+                                   returnera_data_rmarkdown = TRUE,
                                    visa_dataetiketter = TRUE,
                                    skriv_diagramfil = FALSE) {
   
