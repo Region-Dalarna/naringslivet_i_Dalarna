@@ -28,7 +28,7 @@ diag_fdb_omsattning_mm <- function(region_vekt = "20", # Enbart län för tillf�
     if (!requireNamespace("tidyverse", quietly = TRUE)) install.packages("tidyverse")
     if (!requireNamespace("glue", quietly = TRUE)) install.packages("glue")
     
-    vald_region <- skapa_kortnamn_lan(hamtaregion_kod_namn(region_vekt)$region)
+    vald_region <- rdverktyg::skapa_kortnamn_lan(rdverktyg::hamtaregion_kod_namn(region_vekt)$region)
     
     gg_list <- list()
     
@@ -37,11 +37,13 @@ diag_fdb_omsattning_mm <- function(region_vekt = "20", # Enbart län för tillf�
       dplyr::filter(substr(`säteskommun, kod`,1,2) == region_vekt,
                    `fskattstatus, kod`== 1,
                    `företagsstatus, kod` == 1 ) 
-  
     
+    # Tar bort data som inte används från minnet.
+    gc()
+  
     # Olika omsättningsgrupper
     group_omsattning <- function(x) {
-      case_when(
+      dplyr::case_when(
         x %in% c("< 1 tkr", "1 - 499 tkr") ~ "< 500 tkr",
         x %in% c("500 - 999 tkr", "1 000 - 4 999 tkr") ~ "500 - 4 999 tkr",
         x %in% c("5 000 - 9 999 tkr", "10 000 - 19 999 tkr") ~ "5 000 - 19 999 tkr",
@@ -58,18 +60,18 @@ diag_fdb_omsattning_mm <- function(region_vekt = "20", # Enbart län för tillf�
     
     # 
     foretag_oms_ranking_df <- foretag_df |>
-      filter(`storleksklass, oms` != "") |>
-        mutate(omsattning_grupp = group_omsattning(`storleksklass, oms`)) |> 
-          mutate(omsattning_grupp = factor(omsattning_grupp, levels = group_order, ordered = TRUE)) |> 
-            count(omsattning_grupp)
+      dplyr::filter(`storleksklass, oms` != "") |>
+        dplyr::mutate(omsattning_grupp = group_omsattning(`storleksklass, oms`)) |> 
+          dplyr::mutate(omsattning_grupp = factor(omsattning_grupp, levels = group_order, ordered = TRUE)) |> 
+            dplyr::count(omsattning_grupp)
     
     if(returnera_data_rmarkdown == TRUE){
-      assign(paste0(safe_name,"foretag_oms_ranking_df"), foretag_oms_ranking_df, envir = .GlobalEnv)
+      assign("foretag_oms_ranking_df", foretag_oms_ranking_df, envir = .GlobalEnv)
     }
   
       
-      diagramtitel <- glue("Antal företag i {vald_region} uppdelat på omsättning")
-      diagramfil <- glue("antal_foretag_omsattning_SCB_{vald_region}.png")
+      diagramtitel <- glue::glue("Antal företag i {vald_region} uppdelat på omsättning")
+      diagramfil <- glue::glue("antal_foretag_omsattning_SCB_{vald_region}.png")
   
       gg_obj <- rddiagram::SkapaStapelDiagram(skickad_df = foretag_oms_ranking_df,
                                skickad_x_var = "omsattning_grupp",
@@ -79,6 +81,7 @@ diag_fdb_omsattning_mm <- function(region_vekt = "20", # Enbart län för tillf�
                                stodlinjer_avrunda_fem = TRUE,
                                filnamn_diagram = diagramfil,
                                dataetiketter = visa_dataetiketter,
+                               dataetikett_storlek = 3,
                                manual_y_axis_title = "Antal företag",
                                manual_x_axis_title = "Omsättning",
                                manual_x_axis_text_vjust = 1,
@@ -88,11 +91,11 @@ diag_fdb_omsattning_mm <- function(region_vekt = "20", # Enbart län för tillf�
                                skriv_till_diagramfil = skriv_diagramfil)
       
       gg_list <- c(gg_list, list(gg_obj))
-      names(gg_list)[[length(gg_list)]] <- diagramfil %>% str_remove(".png")
+      names(gg_list)[[length(gg_list)]] <- diagramfil  |>  stringr::str_remove(".png")
    
-  
+      # Olika grupper baserat på atnal anställda
       group_anstallda <- function(x) {
-        case_when(
+        dplyr::case_when(
           x == "0 anställda" ~ "0",
           x %in% c("1-4 anställda", "5-9 anställda") ~ "1-9",
           x %in% c("10-19 anställda", "20-49 anställda") ~ "10-49",
@@ -108,17 +111,17 @@ diag_fdb_omsattning_mm <- function(region_vekt = "20", # Enbart län för tillf�
       anstallda_order <- c("0", "1-9", "10-49", "50-249", "250-499", "500-")
   
   foretag_anst_ranking_df <- foretag_df |>
-    filter(`storleksklass, oms` != "") |>
-      mutate(anstallda_grupp = group_anstallda(storleksklass)) |> 
-        mutate(anstallda_grupp = factor(anstallda_grupp, levels = anstallda_order, ordered = TRUE)) |> 
-          count(anstallda_grupp)
+    dplyr::filter(`storleksklass, oms` != "") |>
+      dplyr::mutate(anstallda_grupp = group_anstallda(storleksklass)) |> 
+        dplyr::mutate(anstallda_grupp = factor(anstallda_grupp, levels = anstallda_order, ordered = TRUE)) |> 
+          dplyr::count(anstallda_grupp)
   
   if(returnera_data_rmarkdown == TRUE){
-    assign(paste0(safe_name,"foretag_anst_ranking_df"), foretag_anst_ranking_df, envir = .GlobalEnv)
+    assign("foretag_anst_ranking_df", foretag_anst_ranking_df, envir = .GlobalEnv)
   }
     
-  diagramtitel <- glue("Antal företag i {vald_region} per företagsstorlek")
-  diagramfil <- glue("antal_foretag_anstallda_SCB_{vald_region}.png")
+  diagramtitel <- glue::glue("Antal företag i {vald_region} per företagsstorlek")
+  diagramfil <- glue::glue("antal_foretag_anstallda_SCB_{vald_region}.png")
   
   gg_obj <- rddiagram::SkapaStapelDiagram(skickad_df = foretag_anst_ranking_df,
                                           skickad_x_var = "anstallda_grupp",
@@ -136,7 +139,7 @@ diag_fdb_omsattning_mm <- function(region_vekt = "20", # Enbart län för tillf�
                                           skriv_till_diagramfil = skriv_diagramfil)
   
   gg_list <- c(gg_list, list(gg_obj))
-  names(gg_list)[[length(gg_list)]] <- diagramfil %>% str_remove(".png")
+  names(gg_list)[[length(gg_list)]] <- diagramfil  |>  stringr::str_remove(".png")
   
   return(gg_list)
   

@@ -104,7 +104,13 @@ Urvalet av verksamheter som ingår hämtas från SCB:s Företagsdatabas och de i
 
 </ul>
 
-Antalet företag i länet som möter dessa villkor var under 2023 cirka 23 000 stycken.
+Antalet företag i länet som möter dessa villkor var under 2023 cirka 23 000 stycken.<span class = "kommentar">Var kommer den siffran ifrån?</span>
+
+Från FDB (SCB)
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.height=5, fig.width=8, fig.align='center'}
+gg_fdb_oms_anst$antal_foretag_omsattning_SCB_Dalarna
+```
 
 Vilket datum gäller för uttag ur FDB?
 
